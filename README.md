@@ -1,9 +1,9 @@
 # Progra_Movil Entrega 1
 Repositorio para el curso de Programacion Movil - APP de Cine
 
-INTEGRANTES:
-* Ignacio Medina
-* Alexander Cruz - 20192659
+### Integrantes:
+    - Ignacio Medina
+    - Alexander Cruz - 20192659
 
 - [Introducción](#Introducción)
 - [Entorno de Desarrollo](#Entorno-de-Desarrollo)
@@ -118,6 +118,9 @@ Para crear los iconos de nuestro prototipo y el logo se usara la herramienta de 
 ---
 ## Diagrama de Despliegue
 
+El diagrama de despliegue de nuestra aplicación móvil consta de dos nodos principales: el servidor Cine Data Center y el dispositivo Android donde se ejecuta la aplicación. En el Cine Data Center, se encuentra alojado el servidor que contiene dos componentes fundamentales: el backend desarrollado en Node.js con Express, responsable de gestionar las solicitudes del cliente, y la base de datos Cine.db implementada con SQLite3, utilizada para almacenar información relevante del sistema. Por otro lado, en el dispositivo Android, se ejecuta la aplicación móvil, denominada Cine App y desarrollada en Flutter, que proporciona la interfaz de usuario para que los usuarios puedan interactuar con la plataforma.
+
+![diagrama_de_despliegue](/diagramas/DeploymentDiagram.jpg)
 ---
 
 ## Requerimientos no Funcionales
