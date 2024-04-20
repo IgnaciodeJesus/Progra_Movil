@@ -7,6 +7,12 @@ INTEGRANTES:
 
 - [Introducción](#Introducción)
 - [Entorno de Desarrollo](#Entorno-de-Desarrollo)
+    - [Instalación de Android Studio](#Instalación-de-Android-Studio)
+    - [Requermientos del Sistema](#Requermientos-del-Sistema)
+    - [Pasos a seguir](#Pasos-a-seguir)
+    - [Correr Android Studio](#Correr-Android-Studio)
+    - [Instalar Flutter y Visual Studio Code](#Instalar-Flutter-y-Visual-Studio-Code)
+    - [Instalar Inkscape](#Instalar-Inkscape)
 - [Diagrama de Despliegue](#Diagrama-de-Despliegue)
 - [Requerimientos no Funcionales](#Requerimientos-no-Funcionales)
 - [Diagrana de Casos de Uso](#Diagrana-de-Casos-de-Uso)
@@ -91,6 +97,23 @@ Para realizar la configuración de Flutter y Visual Studio Code, se debe seguir 
 
 3. Luego abriremos Visual Studio Code e instalaremos la extensión de Flutter
 ![studio19](https://www.syncfusion.com/blogs/wp-content/uploads/2021/06/Installing-Flutter-Extension-in-VS-Code-1.png)
+
+4. Ahora instalaremos la extensión de [Flutter](https://flutter-ko.dev/get-started/install/windows), se recomienda crear una carpeta de nombre dev en el disco C y dentro de ella crear una carpeta de nombre flutter, luego descomprimir el archivo descargado en la carpeta flutter.
+
+5. Luego configuraremos la variables de entorno para que se pueda ejecutar correctamente, por lo que se debe ir a la configuración del sistema y buscar la opción de variables de entorno, luego se debe buscar la variable **Path** y agregar la ruta de la carpeta **bin** de flutter.
+
+![alt text](/images/propiedadesSistema.png)
+
+![alt text](/images/ve1.png)
+
+![alt text](/images/ve2.png)
+
+6. Por úlitmo se debe abrir la terminal y ejecutar el comando **flutter doctor** para verificar que todo este correcto.
+
+![alt text](/images/fd.png)
+
+### Instalar Inkscape
+Para crear los iconos de nuestro prototipo y el logo se usara la herramienta de diseño inscape, se debe descargar desde el siguiente enlace [Inkscape](https://inkscape.org/release/) y seguir los pasos de instalación, los cuales solo es presionar *siguiente* en todo.
 
 ---
 ## Diagrama de Despliegue
