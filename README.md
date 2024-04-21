@@ -135,6 +135,23 @@ El diagrama de despliegue de nuestra aplicación móvil consta de dos nodos prin
 ## Diagrana de Casos de Uso
 
 ---
+Como usuario quiero poder logearme en la aplicación.
+Como usuario quiero poder registrarme como un usuario válido.
+Como usuario quiero poder recuperar mi contraseña.
+Como usuario, quiero ver una barra inferior donde tenga las opciones de elegir películas, salas, regresar al inicio y ver mi perfil
+Como usuario quisiera poder ver la lista de películas que el cine tiene disponible.
+Como usuario quisiera poder filtrar las películas por su nombre.
+Como usuario, luego de seleccionar una película, deseo poder ver información detallada de la película.
+Como usuario debo poder ver las salas disponibles de la película seleccionada anteriormente.
+Como usuario quisiera poder seleccionar una función de la sala que deseo asistir para poder reservar mi entrada.
+Como usuario quisiera poder ver la lista de salas disponibles en el cine.
+Como usuario quisiera poder filtrar las salas según su nombre.
+Como usuario, luego de seleccionar una sala, deseo poder ver información detallada de la sala.
+Como usuario deseo poder ver las películas que se pasan en esa sala, así como las funciones disponibles.
+Como usuario deseo poder elegir mis asientos para asistir a la película.
+Como usuario deseo poder ver mi entrada en formato QR para poder ingresar a la sala.
+Como usuario deseo poder modificar mi foto de perfil.
+
 
 ## Descripción de los Casos de Uso y Mockups
 
