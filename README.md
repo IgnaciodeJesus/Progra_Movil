@@ -159,6 +159,8 @@ Como usuario deseo poder modificar mi foto de perfil.
 
 ## Diagrama de entidad-relación
 
+![alt text](/images/relacional.png)
+
 ### Fuentes
 [1] **[https://developer.android.com/studio?hl=es-419](https://developer.android.com/studio?hl=es-419)** <br>
 [2] **[https://visualstudio.microsoft.com/es/](https://code.visualstudio.com/)** <br>
