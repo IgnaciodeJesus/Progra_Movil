@@ -2,8 +2,12 @@
 Repositorio para el curso de Programacion Movil - APP de Cine
 
 ### Integrantes:
-    - Ignacio Medina
     - Alexander Cruz - 20192659
+    - Franco Cuya - 20210773 
+    - Ignacio Medina - 20191240
+    - Angelo Medina - 20193065
+    - Manuel Peña - 20191529
+    - Bryan Ugas - 20212734
 
 - [Introducción](#Introducción)
 - [Entorno de Desarrollo](#Entorno-de-Desarrollo)
@@ -113,7 +117,8 @@ Para realizar la configuración de Flutter y Visual Studio Code, se debe seguir 
 ![alt text](/images/fd.png)
 
 ### Instalar Inkscape
-Para crear los iconos de nuestro prototipo y el logo se usara la herramienta de diseño inscape, se debe descargar desde el siguiente enlace [Inkscape](https://inkscape.org/release/) y seguir los pasos de instalación, los cuales solo es presionar *siguiente* en todo.
+Para crear los iconos de nuestro prototipo y el logo se usara la herramienta de diseño Inkscape, se debe descargar desde el siguiente enlace [Inkscape](https://inkscape.org/release/) y seguir los pasos de instalación, los cuales solo es presionar *siguiente* en todo.
+Nota: También se usará Adobe Illustrator.
 
 ---
 ## Diagrama de Despliegue
