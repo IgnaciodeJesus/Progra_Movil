@@ -58,6 +58,8 @@ El diagrama de despliegue de nuestra aplicación móvil consta de dos nodos prin
 ## Diagrama de Casos de Uso
 
 ---
+![alt text](/images/Diagrama de Casos de Uso Oficial.png)
+
 1. Como usuario quiero poder logearme en la aplicación.
 2. Como usuario quiero poder registrarme como un usuario válido.
 3. Como usuario quiero poder recuperar mi contraseña.
