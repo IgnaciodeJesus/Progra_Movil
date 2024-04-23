@@ -33,39 +33,25 @@ El diagrama de despliegue de nuestra aplicación móvil consta de dos nodos prin
 
 # Requerimientos No Funcionales
 
-## 1. **Rendimiento**
-   - **Tiempo de Respuesta**: El servidor debe manejar las solicitudes dentro de un marco de tiempo específico (por ejemplo, 2 segundos bajo carga normal).
-   - **Capacidad de Procesamiento**: El sistema debe ser capaz de manejar un número mínimo de transacciones por segundo, adecuado para la carga de usuarios esperada.
-   - **Utilización de Recursos**: Asegurar el uso eficiente de recursos del servidor y de la red, manteniendo bajo uso de CPU y memoria para manejar cargas pico de manera efectiva.
+| Requerimiento No funcional | Código  | Justificación                                                                                                                        |
+|----------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------|
+| Rendimiento                | RNFR-001 | - **Tiempo de Respuesta**: El servidor debe manejar las solicitudes dentro de un marco de tiempo específico (por ejemplo, 2 segundos bajo carga normal). 
+  |||- **Capacidad de Procesamiento**: El sistema debe ser capaz de manejar un número mínimo de transacciones por segundo, adecuado para la carga de usuarios esperada.  
+  ||| - **Utilización de Recursos**: Asegurar el uso eficiente de recursos del servidor y de la red, manteniendo bajo uso de CPU y memoria para manejar cargas pico. |
+|Escalabilidad| RNFR-002 | - **Manejo de Carga**: Capacidad para escalar recursos dinámicamente basado en el número de solicitudes, especialmente durante los tiempos pico de visualización de cine. 
+  |||- **Escalabilidad de la Base de Datos**: Asegurar que la base de datos SQLite3 pueda manejar el crecimiento en volumen de datos sin degradación del rendimiento. 
+  |Fiabilidad| RNFR-003|- **Disponibilidad**: Apuntar a métricas de alta disponibilidad para el servidor (por ejemplo, 99.9% de tiempo en línea) incluyendo estrategias robustas de failover.
+  ||| - **Recuperación**: Implementar estrategias para una rápida recuperación de fallos de hardware y software, con soluciones de respaldo integrales para la integridad de los datos.
+  |Seguridad| RNFR-004| - **Seguridad de Datos**: Cifrar datos sensibles en tránsito y en reposo, particularmente información del usuario y detalles de pagos.
+  |||- **Control de Acceso**: Mecanismos robustos de autenticación y autorización para controlar el acceso del usuario a varias funcionalidades del sistema.
+  |Mantenibilidad| RNFR-005| - **Modularidad**: El backend y la base de datos deben estar diseñados para un fácil mantenimiento y actualizaciones sin tiempo de inactividad del sistema.
+  ||| - **Documentación**: Documentación completa del sistema incluyendo APIs, configuraciones del servidor y procedimientos de despliegue.
+  ||| - **Manejo de Errores**: Mecanismos sistemáticos de registro y manejo de errores para facilitar la resolución de problemas y el mantenimiento.
+  |Usabilidad | RNFR-006| - **Interfaz de Usuario**: La aplicación móvil debe ser intuitiva y fácil de navegar para todos los grupos de usuarios, adhiriendo a las mejores prácticas en diseño de UX móvil.
+  ||| - **Responsive**: La aplicación debe ser compatible con una amplia gama de dispositivos Android, adaptándose a diferentes tamaños de pantalla y resoluciones.|
 
-## 2. **Escalabilidad**
-   - **Manejo de Carga**: Capacidad para escalar recursos dinámicamente basado en el número de solicitudes, especialmente durante los tiempos pico de visualización de cine.
-   - **Escalabilidad de la Base de Datos**: Asegurar que la base de datos SQLite3 pueda manejar el crecimiento en volumen de datos sin degradación del rendimiento.
 
-## 3. **Fiabilidad**
-   - **Disponibilidad**: Apuntar a métricas de alta disponibilidad para el servidor (por ejemplo, 99.9% de tiempo en línea) incluyendo estrategias robustas de failover.
-   - **Recuperación**: Implementar estrategias para una rápida recuperación de fallos de hardware y software, con soluciones de respaldo integrales para la integridad de los datos.
 
-## 4. **Seguridad**
-   - **Seguridad de Datos**: Cifrar datos sensibles en tránsito y en reposo, particularmente información del usuario y detalles de pagos.
-   - **Control de Acceso**: Mecanismos robustos de autenticación y autorización para controlar el acceso del usuario a varias funcionalidades del sistema.
-   - **Auditoría y Monitoreo**: Auditorías de seguridad regulares y monitoreo en tiempo real de actividades sospechosas para prevenir violaciones de seguridad.
-
-## 5. **Mantenibilidad**
-   - **Modularidad**: El backend y la base de datos deben estar diseñados para un fácil mantenimiento y actualizaciones sin tiempo de inactividad del sistema.
-   - **Documentación**: Documentación completa del sistema incluyendo APIs, configuraciones del servidor y procedimientos de despliegue.
-   - **Manejo de Errores**: Mecanismos sistemáticos de registro y manejo de errores para facilitar la resolución de problemas y el mantenimiento.
-
-## 6. **Usabilidad**
-   - **Interfaz de Usuario**: La aplicación móvil debe ser intuitiva y fácil de navegar para todos los grupos de usuarios, adhiriendo a las mejores prácticas en diseño de UX móvil.
-   - **Accesibilidad**: Asegurar que la app sea accesible para usuarios con discapacidades, siguiendo directrices como las de WCAG.
-
-## 7. **Cumplimiento**
-   - **Cumplimiento Regulatorio**: Cumplir con los requisitos legales y regulatorios aplicables incluyendo leyes de protección de datos como el GDPR si es aplicable.
-
-## 8. **Portabilidad**
-   - **Compatibilidad de Dispositivos**: Asegurar que la aplicación móvil sea compatible a través de diversos dispositivos Android y versiones de OS.
-   - **Migración de Datos**: Facilitar la migración fácil de los sistemas backend o bases de datos sin impactar a los usuarios finales.
 
 ---
 
