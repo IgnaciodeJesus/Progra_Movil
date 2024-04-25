@@ -10,7 +10,7 @@ Repositorio para el curso de Programacion Movil - APP de Cine
     - Bryan Ugas - 20212734
 
 - [Introducción](#Introducción)
-- [Entorno de Desarrollo](./installation_guide/Readme.md)
+- [Entorno de Desarrollo](/installation_guide/Readme.md)
 - [Diagrama de Despliegue](#Diagrama-de-Despliegue)
 - [Requerimientos no Funcionales](#Requerimientos-no-Funcionales)
 - [Diagrana de Casos de Uso](#Diagrana-de-Casos-de-Uso)
