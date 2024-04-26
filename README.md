@@ -89,46 +89,45 @@ El diagrama de despliegue de nuestra aplicación móvil consta de dos nodos prin
 - **Support_Figma** -> https://www.figma.com/file/gXQogV1ZWPkFq84viV40PF/Progra-Web-2024-0?type=design&node-id=9531-55806&mode=design&t=fVXnlkW5uOY4dRhf-0
 
 
-## Como usuario quiero poder logearme en la aplicación.
+### Como usuario quiero poder logearme en la aplicación.
 <img src="/images/login_figma.png" alt="login" height="400"/>
 
-## Como usuario quiero poder registrarme como un usuario válido.
+### Como usuario quiero poder registrarme como un usuario válido.
 <img src="/images/registro_figma.png" alt="registro" height="400"/>
 
-## Como usuario quiero poder recuperar mi contraseña.
+### Como usuario quiero poder recuperar mi contraseña.
 <img src="/images/recuperar_figma.png" alt="registro" height="400"/>
 
-## Como usuario quisiera poder ver la lista de películas que el cine tiene disponible.
+### Como usuario quisiera poder ver la lista de películas que el cine tiene disponible.
 ## Como usuario, quiero ver una barra inferior donde tenga las opciones de elegir películas, salas, regresar al inicio y ver mi perfil.
 <img src="/images/homepage.png" alt="registro" height="400"/>
 
-## Como usuario quisiera poder ver la lista de películas que el cine tiene disponible.
+### Como usuario quisiera poder ver la lista de películas que el cine tiene disponible.
 ## Como usuario, quiero ver una barra inferior donde tenga las opciones de elegir películas, salas, regresar al inicio y ver mi perfil.
 <img src="/images/peliculas.png" alt="registro" height="400"/>
 
-## Como usuario quisiera poder filtrar las películas por su nombre, genero o actor.
-## Como usuario, quiero ver una barra inferior donde tenga las opciones de elegir películas, salas, regresar al inicio y ver mi perfil.
-<img src="/images/" alt="registro" height="400"/>
+### Como usuario quisiera poder filtrar las películas por su nombre, genero o actor.
+### Como usuario, quiero ver una barra inferior donde tenga las opciones de elegir películas, salas, regresar al inicio y ver mi perfil.
+<img src="/images/homepage.png" alt="registro" height="400"/>
 
-## Como usuario deseo poder modificar mi foto de perfil.
+### Como usuario deseo poder modificar mi foto de perfil.
 <img src="/images/Perfil.png" alt="entrada" height="400"/>
 
-## Como usuario debo poder ver las salas disponibles de la película seleccionada anteriormente.
+### Como usuario quisiera poder filtrar las salas según su nombre.
+### Como usuario quisiera poder ver la lista de salas disponibles en el cine.
 <img src="/images/Cines.png" alt="entrada" height="400"/>
 
-## Como usuario, luego de seleccionar una película, deseo poder ver información detallada de la película.
+### Como usuario, luego de seleccionar una película, deseo poder ver información detallada de la película.
 <img src="images/peliculaInfo.png" alt="entrada" height="400"/>
 
-## Como usuario, luego de seleccionar una sala, deseo poder ver información detallada de la sala.
+### Como usuario, luego de seleccionar una sala, deseo poder ver información detallada de la sala.
 <img src="images/cineInfo.png" alt="entrada" height="400"/>
 
-
-## Como usuario deseo poder elegir mis asientos para asistir a la película.
+### Como usuario deseo poder elegir mis asientos para asistir a la película.
 <img src="/images/SalaAsientos.png" alt="asientos" height="400"/>
 
-## Como usuario deseo poder ver mi entrada en formato QR para poder ingresar a la sala.
+### Como usuario deseo poder ver mi entrada en formato QR para poder ingresar a la sala.
 <img src="/images/Entrada.png" alt="entrada" height="400"/>
-
 
 
 ---
