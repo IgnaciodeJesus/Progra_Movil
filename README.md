@@ -61,6 +61,27 @@ El diagrama de despliegue de nuestra aplicación móvil consta de dos nodos prin
 ---
 ![diagrama_de_caso de uso](/diagramas/DiagramaCasoUso.png)
 
+| ID | Nombre del Requerimiento Funcional |
+|----|-----------------------------------|
+| RF1 | Autenticación de usuario: Logearse en la aplicación. |
+| RF2 | Registro de usuario: Registrarse como un usuario válido. |
+| RF3 | Recuperación de contraseña: Recuperar la contraseña. |
+| RF4 | Navegación: Barra inferior con opciones de películas, salas, inicio y perfil. |
+| RF5 | Catálogo de películas: Ver lista de películas disponibles. |
+| RF6 | Filtrado de películas: Filtrar películas por nombre, género o actor. |
+| RF7 | Detalles de película: Ver información detallada de una película seleccionada. |
+| RF8 | Salas disponibles: Ver las salas disponibles para la película seleccionada. |
+| RF9 | Selección de función: Seleccionar función de la sala para reservar entrada. |
+| RF10 | Lista de salas: Ver la lista de salas disponibles en el cine. |
+| RF11 | Filtrado de salas: Filtrar salas según su nombre. |
+| RF12 | Detalles de sala: Ver información detallada de una sala seleccionada. |
+| RF13 | Programación de sala: Ver películas y funciones disponibles en una sala. |
+| RF14 | Selección de asientos: Elegir asientos para la película seleccionada. |
+| RF15 | Entrada en formato QR: Ver la entrada en formato QR para ingresar a la sala. |
+| RF16 | Modificación de foto de perfil: Modificar la foto de perfil del usuario. |
+
+
+
 1. Como usuario quiero poder logearme en la aplicación.
 2. Como usuario quiero poder registrarme como un usuario válido.
 3. Como usuario quiero poder recuperar mi contraseña.
@@ -81,6 +102,8 @@ El diagrama de despliegue de nuestra aplicación móvil consta de dos nodos prin
 
 
 ## Descripción de los Casos de Uso y Mockups
+
+
 
 - **Production_Figma** -> https://www.figma.com/file/POWMOa0fhxukU31Ssmec46/Prototipo-Progra-Movil?type=design&node-id=0%3A1&mode=design&t=UgnbuJFcglnSbsiP-1
 
