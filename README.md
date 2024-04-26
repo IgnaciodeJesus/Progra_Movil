@@ -103,7 +103,7 @@ El diagrama de despliegue de nuestra aplicación móvil consta de dos nodos prin
 <img src="/images/homepage.png" alt="registro" height="400"/>
 
 ### Como usuario quisiera poder ver la lista de películas que el cine tiene disponible.
-## Como usuario, quiero ver una barra inferior donde tenga las opciones de elegir películas, salas, regresar al inicio y ver mi perfil.
+### Como usuario, quiero ver una barra inferior donde tenga las opciones de elegir películas, salas, regresar al inicio y ver mi perfil.
 <img src="/images/peliculas.png" alt="registro" height="400"/>
 
 ### Como usuario quisiera poder filtrar las películas por su nombre, genero o actor.
