@@ -59,6 +59,8 @@ El diagrama de despliegue de nuestra aplicación móvil consta de dos nodos prin
 ## Diagrama de Casos de Uso
 
 ---
+Se realizó un diagrama de casos de uso del aplicativo web con la finalidad de tener una mejor representación de los procesos involucrados visualizando como se relacionan los requisitos funcionales desde la perspectiva del usuario.
+
 ![diagrama_de_caso de uso](/diagramas/DiagramaCasoUso.png)
 
 | ID | Nombre del Requerimiento Funcional | Descripción |
