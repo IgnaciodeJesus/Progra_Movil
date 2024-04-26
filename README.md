@@ -88,9 +88,6 @@ Se realizó un diagrama de casos de uso del aplicativo web con la finalidad de t
 
 - **Production_Figma** -> https://www.figma.com/file/POWMOa0fhxukU31Ssmec46/Prototipo-Progra-Movil?type=design&node-id=0%3A1&mode=design&t=UgnbuJFcglnSbsiP-1
 
-- **Support_Figma** -> https://www.figma.com/file/gXQogV1ZWPkFq84viV40PF/Progra-Web-2024-0?type=design&node-id=9531-55806&mode=design&t=fVXnlkW5uOY4dRhf-0
-
-
 ### Como usuario quiero poder logearme en la aplicación.
 <img src="/images/login_figma.png" alt="login" height="400"/>
 
