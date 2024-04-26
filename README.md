@@ -61,45 +61,24 @@ El diagrama de despliegue de nuestra aplicación móvil consta de dos nodos prin
 ---
 ![diagrama_de_caso de uso](/diagramas/DiagramaCasoUso.png)
 
-| ID | Nombre del Requerimiento Funcional |
-|----|-----------------------------------|
-| RF1 | Autenticación de usuario: Logearse en la aplicación. |
-| RF2 | Registro de usuario: Registrarse como un usuario válido. |
-| RF3 | Recuperación de contraseña: Recuperar la contraseña. |
-| RF4 | Navegación: Barra inferior con opciones de películas, salas, inicio y perfil. |
-| RF5 | Catálogo de películas: Ver lista de películas disponibles. |
-| RF6 | Filtrado de películas: Filtrar películas por nombre, género o actor. |
-| RF7 | Detalles de película: Ver información detallada de una película seleccionada. |
-| RF8 | Salas disponibles: Ver las salas disponibles para la película seleccionada. |
-| RF9 | Selección de función: Seleccionar función de la sala para reservar entrada. |
-| RF10 | Lista de salas: Ver la lista de salas disponibles en el cine. |
-| RF11 | Filtrado de salas: Filtrar salas según su nombre. |
-| RF12 | Detalles de sala: Ver información detallada de una sala seleccionada. |
-| RF13 | Programación de sala: Ver películas y funciones disponibles en una sala. |
-| RF14 | Selección de asientos: Elegir asientos para la película seleccionada. |
-| RF15 | Entrada en formato QR: Ver la entrada en formato QR para ingresar a la sala. |
-| RF16 | Modificación de foto de perfil: Modificar la foto de perfil del usuario. |
-
-
-
-1. Como usuario quiero poder logearme en la aplicación.
-2. Como usuario quiero poder registrarme como un usuario válido.
-3. Como usuario quiero poder recuperar mi contraseña.
-4. Como usuario, quiero ver una barra inferior donde tenga las opciones de elegir películas, salas, regresar al inicio y ver mi perfil.
-5. Como usuario quisiera poder ver la lista de películas que el cine tiene disponible.
-6. Como usuario quisiera poder filtrar las películas por su nombre, genero o actor.
-7. Como usuario, luego de seleccionar una película, deseo poder ver información detallada de la película.
-8. Como usuario debo poder ver las salas disponibles de la película seleccionada anteriormente.
-9. Como usuario quisiera poder seleccionar una función de la sala que deseo asistir para poder reservar mi entrada.
-10. Como usuario quisiera poder ver la lista de salas disponibles en el cine.
-11. Como usuario quisiera poder filtrar las salas según su nombre.
-12. Como usuario, luego de seleccionar una sala, deseo poder ver información detallada de la sala.
-13. Como usuario deseo poder ver las películas que se pasan en esa sala, así como las funciones disponibles.
-14. Como usuario deseo poder elegir mis asientos para asistir a la película.
-15. Como usuario deseo poder ver mi entrada en formato QR para poder ingresar a la sala.
-16. Como usuario deseo poder modificar mi foto de perfil.
-
-
+| ID | Nombre del Requerimiento Funcional | Descripción |
+|----|-----------------------------------|-------------|
+| RF1 | Autenticación de usuario | Como usuario quiero poder logearme en la aplicación. |
+| RF2 | Registro de usuario | Como usuario quiero poder registrarme como un usuario válido. |
+| RF3 | Recuperación de contraseña | Como usuario quiero poder recuperar mi contraseña. |
+| RF4 | Navegación | Como usuario, quiero ver una barra inferior donde tenga las opciones de elegir películas, salas, regresar al inicio y ver mi perfil. |
+| RF5 | Catálogo de películas | Como usuario quisiera poder ver la lista de películas que el cine tiene disponible. |
+| RF6 | Filtrado de películas | Como usuario quisiera poder filtrar las películas por su nombre, género o actor. |
+| RF7 | Detalles de película | Como usuario, luego de seleccionar una película, deseo poder ver información detallada de la película. |
+| RF8 | Salas disponibles | Como usuario debo poder ver las salas disponibles de la película seleccionada anteriormente. |
+| RF9 | Selección de función | Como usuario quisiera poder seleccionar una función de la sala que deseo asistir para poder reservar mi entrada. |
+| RF10 | Lista de salas | Como usuario quisiera poder ver la lista de salas disponibles en el cine. |
+| RF11 | Filtrado de salas | Como usuario quisiera poder filtrar las salas según su nombre. |
+| RF12 | Detalles de sala | Como usuario, luego de seleccionar una sala, deseo poder ver información detallada de la sala. |
+| RF13 | Programación de sala | Como usuario deseo poder ver las películas que se pasan en esa sala, así como las funciones disponibles. |
+| RF14 | Selección de asientos | Como usuario deseo poder elegir mis asientos para asistir a la película. |
+| RF15 | Entrada en formato QR | Como usuario deseo poder ver mi entrada en formato QR para poder ingresar a la sala. |
+| RF16 | Modificación de foto de perfil | Como usuario deseo poder modificar mi foto de perfil. |
 
 ## Descripción de los Casos de Uso y Mockups
 
