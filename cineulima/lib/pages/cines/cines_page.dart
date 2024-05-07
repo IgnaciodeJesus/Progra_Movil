@@ -5,8 +5,10 @@ import 'cines_controller.dart';
 class CinesPage extends StatelessWidget {
   CinesController control = Get.put(CinesController());
 
+  CinesPage({super.key});
+
   Widget _buildBody(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Text('Profile Page'),
     );
   }

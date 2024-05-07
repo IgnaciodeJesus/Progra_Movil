@@ -5,8 +5,10 @@ import './template_controller.dart';
 class TemplatePage extends StatelessWidget {
   TemplateController control = Get.put(TemplateController());
 
+  TemplatePage({super.key});
+
   Widget _buildBody(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Text('Template Page'),
     );
   }

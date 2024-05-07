@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +7,8 @@ import 'carrousel_controller.dart';
 
 class CarrouselPage extends StatelessWidget {
   CarrouselPageController control = Get.put(CarrouselPageController());
+
+  CarrouselPage({super.key});
 
   Widget _movieInfo(BuildContext context, Pelicula pelicula){
     return Stack(
@@ -26,7 +27,7 @@ class CarrouselPage extends StatelessWidget {
           right: 0,
           child: Container(
             height: MediaQuery.of(context).size.height * 0.3,
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -49,7 +50,7 @@ class CarrouselPage extends StatelessWidget {
                 // Géneros
                 Text(
                   pelicula.generosToString(),
-                  style: GoogleFonts.itim(textStyle: TextStyle(
+                  style: GoogleFonts.itim(textStyle: const TextStyle(
                     color: Colors.white,
                     fontSize: 16.0
                   ))
@@ -70,7 +71,7 @@ class CarrouselPage extends StatelessWidget {
           builder: (BuildContext context) {
             return Container(
                 width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.white
                 ),
                 child: _movieInfo(context, pelicula)
