@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'movies_controller.dart';
+import 'package:cineulima/pages/movinfo/movinfo_page.dart';
 
 class MoviesPage extends StatelessWidget {
   MoviesController control = Get.put(MoviesController());
@@ -32,13 +33,22 @@ class MoviesPage extends StatelessWidget {
             shrinkWrap: true,
             childAspectRatio: (itemWidth / itemHeight),
             children: control.filteredPeliculas.map((p) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                ),
-                child: Image.network(
-                  p.imagenUrl,
-                  fit: BoxFit.fill,
+              return GestureDetector(
+                onTap: () {
+                  // Navigate to the new page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MovinfoPage(p:p)),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                  ),
+                  child: Image.network(
+                    p.imagenUrl,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               );
             }).toList(),

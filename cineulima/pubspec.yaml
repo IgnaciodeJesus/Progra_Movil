@@ -40,6 +40,10 @@ dependencies:
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.2.1
   carousel_slider: ^4.2.1
+  video_player: ^2.2.16
+  chewie: ^1.2.2
+  youtube_player_flutter: ^9.0.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
