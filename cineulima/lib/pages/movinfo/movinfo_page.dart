@@ -1,3 +1,4 @@
+import 'package:cineulima/pages/movies/movies_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../models/entities/Pelicula.dart';
@@ -26,12 +27,17 @@ class MovinfoPage extends StatelessWidget {
           children: [
             // Video player
             YoutubePlayer(
+              bottomActions: [
+                CurrentPosition(),
+                ProgressBar(isExpanded: true),
+                RemainingDuration(),
+              ],
               controller: controller.controller,
               showVideoProgressIndicator: true,
-              progressIndicatorColor: Colors.amber,
+              progressIndicatorColor: Colors.orange,
               progressColors: const ProgressBarColors(
-                playedColor: Colors.amber,
-                handleColor: Colors.amberAccent,
+                playedColor: Colors.orange,
+                handleColor: Colors.orangeAccent,
               ),
               onReady: () {
                 // Add listener
@@ -49,18 +55,18 @@ class MovinfoPage extends StatelessWidget {
                   children: [
                   Text(
                     p.titulo,
-                    style: TextStyle(
+                    style: GoogleFonts.inter(textStyle:const TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w900,
+                    ))
                   ),
                   Text(
                     p.generosToString(),
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
+                    style: GoogleFonts.itim(textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.0
+                    )),
                   ),
                   ]
                 )
@@ -70,14 +76,14 @@ class MovinfoPage extends StatelessWidget {
         ),
         // Movie information
         Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Sinopsis',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 24,
                   color: Color(0xFF000C78), // Use Color class to specify color from hex
                   fontWeight: FontWeight.bold, // Set text to bold
                 ),
@@ -87,19 +93,21 @@ class MovinfoPage extends StatelessWidget {
                 p.sinopsis,
                 style: TextStyle(fontSize: 12.5),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 20),
               Text(
                 'Actores',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 24,
                   color: Color(0xFF000C78), // Use Color class to specify color from hex
                   fontWeight: FontWeight.bold, // Set text to bold
                 ),
               ),
               SizedBox(height: 2), // Espacio entre el texto y la lista de actores
               SizedBox(
-                height: 100, // Altura máxima para la lista de actores
+                height: 100,
                 child: ListView.builder(
+                  padding: EdgeInsets.only(left: 20),
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: (p.actores.length / 2).ceil(), // Calcular la cantidad de filas
                   itemBuilder: (context, index) {
                     return Padding(
@@ -151,9 +159,10 @@ class MovinfoPage extends StatelessWidget {
                         controller.funcionesFiltradas.value = controller.getFuncionesPorFecha(p, controller.selectedDate.value);
                       },
                       child: Padding(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(10),
                         child : Obx(() => Container(
-                          width: 60,
+                          width: 50,
+                          padding: EdgeInsets.only(left:5, right:5, top:5),
                           decoration: BoxDecoration(
                           border: Border.all(color: controller.selectedDate.value == fecha['value'] ? Colors.orange : Colors.black26),
                           borderRadius: BorderRadius.circular(5),
@@ -163,15 +172,15 @@ class MovinfoPage extends StatelessWidget {
                             children: [
                               Text(
                                 fecha['diaSemana'],
-                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 8, color: controller.selectedDate.value == fecha['value'] ? Colors.orange : Colors.black26),
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 8, color: controller.selectedDate.value == fecha['value'] ? Colors.orange : Colors.black45),
                               ),
                               Text(
                                 fecha['diaMes'],
-                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: controller.selectedDate.value == fecha['value'] ? Colors.orange : Colors.black26),
+                                style: TextStyle(height: 1.2,fontWeight: FontWeight.bold, fontSize: 25, color: controller.selectedDate.value == fecha['value'] ? Colors.orange : Colors.black45),
                               ),
                               Text(
                                 fecha['mes'],
-                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 8, color: controller.selectedDate.value == fecha['value'] ? Colors.orange : Colors.black26),
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 8, color: controller.selectedDate.value == fecha['value'] ? Colors.orange : Colors.black45),
                               ),
                             ],
                           ),
@@ -190,7 +199,7 @@ class MovinfoPage extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           '${funcion['sala']}',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -202,13 +211,13 @@ class MovinfoPage extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(4),
-                            border: Border.all(color: Colors.orange)
+                            border: Border.all(color: const Color(0xFF000C78))
                           ),
-                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          margin: EdgeInsets.only(top: 5, bottom: 5, right: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          margin: const EdgeInsets.only(top: 5, bottom: 5, right: 20),
                           child: Text(
                             '${funcion['horario']}',
-                            style: TextStyle(fontSize: 16),
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF000C78)),
                           ),
                         ))
                             .toList(),
@@ -231,8 +240,15 @@ class MovinfoPage extends StatelessWidget {
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.chevron_left, color: Colors.white, size: 28),
+            onPressed: () {
+              Navigator.pop(context);
+              },
+          ),
+          titleSpacing: 5,
           title: Text(
-            '<  Peliculas',
+            'Peliculas',
             style: GoogleFonts.openSans(
               textStyle: const TextStyle(
                 color: Colors.white,

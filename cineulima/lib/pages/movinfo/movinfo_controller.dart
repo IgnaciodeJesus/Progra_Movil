@@ -101,7 +101,7 @@ class MovinfoController extends GetxController {
     _controller = YoutubePlayerController(
       initialVideoId: videoId,
       flags: YoutubePlayerFlags(
-        autoPlay: true,
+        autoPlay: false,
         mute: true,
       ),
     );
@@ -134,10 +134,13 @@ class MovinfoController extends GetxController {
     List<Map<String, dynamic>> fechasFormateadas = [];
     funcionesPorFecha.forEach((fecha, funcionesFecha) {
       String diaSemana = DateFormat('EEEE', 'es').format(fecha);
+      diaSemana =  diaSemana[0].toUpperCase() + diaSemana.substring(1);
+      String mesString = DateFormat('MMMM', 'es').format(fecha);
+      mesString = mesString[0].toUpperCase() + mesString.substring(1);
       fechasFormateadas.add({
         'diaSemana': diaSemana,
         'diaMes': DateFormat('dd', 'es').format(fecha),
-        'mes': DateFormat('MMMM', 'es').format(fecha),
+        'mes': mesString,
         'value': fecha,
       });
     });
