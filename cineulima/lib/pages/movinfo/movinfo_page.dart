@@ -16,7 +16,9 @@ class MovinfoPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     var fechasFiltradas = controller.getFechasFiltradas(p);
-    controller.selectedDate.value = fechasFiltradas[0]['value'];
+    if (fechasFiltradas.length > 0){
+      controller.selectedDate.value = fechasFiltradas[0]['value'];
+    }
     controller.funcionesFiltradas.value = controller.getFuncionesPorFecha(p, controller.selectedDate.value);
     return SingleChildScrollView(
       child: Column(
@@ -137,12 +139,13 @@ class MovinfoPage extends StatelessWidget {
               ),
               Divider(),
               Text(
-                'Comprar entradas',
+                fechasFiltradas.length > 0 ? 'Comprar entradas' : 'No hay funciones disponibles para esta película',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 24,
                   color: Color(0xFF000C78), // Use Color class to specify color from hex
                   fontWeight: FontWeight.bold, // Set text to bold
                 ),
+                textAlign: fechasFiltradas.length > 0 ? TextAlign.left :TextAlign.center,
               ),
               SizedBox(width: 4),
               Container(
@@ -241,9 +244,10 @@ class MovinfoPage extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.chevron_left, color: Colors.white, size: 28),
+            icon: const Icon(Icons.chevron_left, color: Colors.white, size: 28),
             onPressed: () {
               Navigator.pop(context);
+
               },
           ),
           titleSpacing: 5,

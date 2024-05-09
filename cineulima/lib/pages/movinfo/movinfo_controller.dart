@@ -100,7 +100,7 @@ class MovinfoController extends GetxController {
     String videoId = YoutubePlayer.convertUrlToId(trailerUrl) ?? '';
     _controller = YoutubePlayerController(
       initialVideoId: videoId,
-      flags: YoutubePlayerFlags(
+      flags: const YoutubePlayerFlags(
         autoPlay: false,
         mute: true,
       ),
@@ -111,6 +111,7 @@ class MovinfoController extends GetxController {
   void onClose() {
     _controller.dispose();
     super.onClose();
+
   }
 
   YoutubePlayerController get controller => _controller;

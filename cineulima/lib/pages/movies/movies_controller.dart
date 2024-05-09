@@ -22,7 +22,7 @@ class MoviesController extends GetxController {
         titulo: "Underwater",
         sinopsis: "Underwater is a 2020 American science fiction action horror film directed by William Eubank. The film stars Kristen Stewart, Vincent Cassel, Jessica Henwick, John Gallagher Jr., Mamoudou Athie, and T.J. Miller.",
         imagenUrl: "https://m.media-amazon.com/images/M/MV5BNzM0OGZiZWItYmZiNC00NDgzLTg1MjMtYjM4MWZhOGZhMDUwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
-        trailerUrl: "",
+        trailerUrl: "https://www.youtube.com/watch?v=acDsd8iX4x4",
         actores: ["Kristen Stewart", "Vincent Cassel", "Jessica Henwick", "John Gallagher Jr.", "Mamoudou Athie", "T.J. Miller"],
         generos: ["Action", "Horror", "Science Fiction"]
     ),
@@ -31,7 +31,7 @@ class MoviesController extends GetxController {
         titulo: "Like a Boss",
         sinopsis: "Like a Boss is a 2020 American comedy film directed by Miguel Arteta, written by Sam Pitman and Adam Cole-Kelly, and starring Tiffany Haddish, Rose Byrne, and Salma Hayek. The plot follows two friends who attempt to take back control of their cosmetics company from an industry titan.",
         imagenUrl: "https://m.media-amazon.com/images/M/MV5BNjAyZDRjMjQtODE3MC00ODI2LTgxODktZThjYTgzZDE5NTc4XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UX1000_.jpg",
-        trailerUrl: "",
+        trailerUrl: "https://www.youtube.com/watch?v=9ESkyRFEso4",
         actores: ["Tiffany Haddish", "Rose Byrne", "Salma Hayek"],
         generos: ["Comedy"]
     ),
@@ -49,7 +49,7 @@ class MoviesController extends GetxController {
         titulo: "Underwater",
         sinopsis: "Underwater is a 2020 American science fiction action horror film directed by William Eubank. The film stars Kristen Stewart, Vincent Cassel, Jessica Henwick, John Gallagher Jr., Mamoudou Athie, and T.J. Miller.",
         imagenUrl: "https://m.media-amazon.com/images/M/MV5BNzM0OGZiZWItYmZiNC00NDgzLTg1MjMtYjM4MWZhOGZhMDUwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
-        trailerUrl: "",
+        trailerUrl: "https://www.youtube.com/watch?v=acDsd8iX4x4",
         actores: ["Kristen Stewart", "Vincent Cassel", "Jessica Henwick", "John Gallagher Jr.", "Mamoudou Athie", "T.J. Miller"],
         generos: ["Action", "Horror", "Science Fiction"]
     ),
@@ -58,7 +58,7 @@ class MoviesController extends GetxController {
         titulo: "Like a Boss",
         sinopsis: "Like a Boss is a 2020 American comedy film directed by Miguel Arteta, written by Sam Pitman and Adam Cole-Kelly, and starring Tiffany Haddish, Rose Byrne, and Salma Hayek. The plot follows two friends who attempt to take back control of their cosmetics company from an industry titan.",
         imagenUrl: "https://m.media-amazon.com/images/M/MV5BNjAyZDRjMjQtODE3MC00ODI2LTgxODktZThjYTgzZDE5NTc4XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UX1000_.jpg",
-        trailerUrl: "",
+        trailerUrl: "https://www.youtube.com/watch?v=9ESkyRFEso4",
         actores: ["Tiffany Haddish", "Rose Byrne", "Salma Hayek"],
         generos: ["Comedy"]
     )
