@@ -44,6 +44,8 @@ dependencies:
   chewie: ^1.2.2
   youtube_player_flutter: ^9.0.1
   intl: ^0.17.0
+  http: ^1.1.2
+
 
 dev_dependencies:
   flutter_test:
