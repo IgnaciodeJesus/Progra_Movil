@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../configs/constants.dart';
 import '../../models/entities/Pelicula.dart';
 import 'carrousel_controller.dart';
 
@@ -19,6 +20,7 @@ class CarrouselPage extends StatelessWidget {
           fit: BoxFit.cover,
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
+          alignment: Alignment.topCenter,
         ),
         // Contenido superpuesto
         Positioned(
@@ -66,7 +68,7 @@ class CarrouselPage extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(height: MediaQuery.of(context).size.height, viewportFraction: 1, autoPlay: true),
-      items: control.peliculas.map((pelicula) {
+      items: PELICULAS.sublist(0,3).map((pelicula) {
         return Builder(
           builder: (BuildContext context) {
             return Container(

@@ -14,7 +14,7 @@ class Usuario {
   int id;
   String nombre;
   String apellido;
-  int dni;
+  String dni;
   String correo;
   String password;
   String fotoPerfil;
@@ -33,7 +33,7 @@ class Usuario {
     int? id,
     String? nombre,
     String? apellido,
-    int? dni,
+    String? dni,
     String? correo,
     String? password,
     String? fotoPerfil,

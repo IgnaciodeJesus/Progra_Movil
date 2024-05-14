@@ -1,7 +1,7 @@
 import 'package:cineulima/pages/carrousel/carrousel_page.dart';
 import 'package:cineulima/pages/cines/cines_page.dart';
 import 'package:cineulima/pages/movies/movies_page.dart';
-import 'package:cineulima/pages/Perfil/Perfil_page.dart';
+import 'package:cineulima/pages/Perfil/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'home_controller.dart';

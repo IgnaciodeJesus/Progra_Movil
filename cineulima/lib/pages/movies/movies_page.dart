@@ -20,8 +20,9 @@ class MoviesPage extends StatelessWidget {
           child: TextField(
             controller: control.filtro,
             decoration: InputDecoration(
-              hintText: 'Buscar película por título',
-              hintStyle: GoogleFonts.itim(textStyle: const TextStyle(fontSize: 18)),
+                hintText: 'Buscar película por título',
+                hintStyle: GoogleFonts.itim(textStyle: const TextStyle(fontSize: 18)),
+                border: InputBorder.none
             ),
             style: GoogleFonts.itim(textStyle: const TextStyle(fontSize: 18)),
             onChanged: (value) => control.filtrarPelicula(value),
@@ -31,7 +32,7 @@ class MoviesPage extends StatelessWidget {
           child: GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
-            childAspectRatio: (itemWidth / itemHeight),
+            childAspectRatio: context.isPortrait ? itemWidth / itemHeight : (itemWidth / 2) / (itemHeight) ,
             children: control.filteredPeliculas.map((p) {
               return GestureDetector(
                 onTap: () {
@@ -47,7 +48,8 @@ class MoviesPage extends StatelessWidget {
                   ),
                   child: Image.network(
                     p.imagenUrl,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
                   ),
                 ),
               );

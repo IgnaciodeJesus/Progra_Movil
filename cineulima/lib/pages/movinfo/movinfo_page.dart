@@ -90,7 +90,7 @@ class MovinfoPage extends StatelessWidget {
                   fontWeight: FontWeight.bold, // Set text to bold
                 ),
               ),
-              SizedBox(height: 2),
+              SizedBox(height: 8),
               Text(
                 p.sinopsis,
                 style: TextStyle(fontSize: 12.5),
@@ -139,7 +139,7 @@ class MovinfoPage extends StatelessWidget {
               ),
               Divider(),
               Text(
-                fechasFiltradas.length > 0 ? 'Comprar entradas' : 'No hay funciones disponibles para esta película',
+                fechasFiltradas.isNotEmpty ? 'Comprar entradas' : 'No hay funciones disponibles para esta película',
                 style: TextStyle(
                   fontSize: 24,
                   color: Color(0xFF000C78), // Use Color class to specify color from hex
