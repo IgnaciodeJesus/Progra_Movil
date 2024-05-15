@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../configs/constants.dart';
 import '../../models/entities/Usuario.dart';
-import '../../models/entities/Funcion.dart';
 import '../../models/entities/Pelicula.dart';
 import '../../models/entities/Sala.dart';
 
 class PerfilController extends GetxController {
+  // Usa Rx<Usuario> para hacer que el usuario sea reactivo.
+  final usuario = Rx<Usuario>(USUARIOS.first);
 
-  Usuario get usuario => USUARIOS.first;
-
+  // Métodos para obtener detalles de película y sala.
   Pelicula? getPeliculaPorId(int id) =>
       PELICULAS.firstWhereOrNull((pelicula) => pelicula.id == id);
 
@@ -24,5 +25,22 @@ class PerfilController extends GetxController {
 
   String getSalaNombre(int id) {
     return getSalaPorId(id)?.nombre ?? "Sala no encontrada";
+  }
+
+  final ImagePicker _picker = ImagePicker();
+
+  // Método para actualizar la foto de perfil del usuario
+  void actualizarFotoPerfil() async {
+    final XFile? imagen = await _picker.pickImage(source: ImageSource.gallery);
+    if (imagen != null) {
+      // Actualiza el usuario de forma reactiva.
+      usuario.value = usuario.value.copyWith(fotoPerfil: imagen.path);
+    }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Opcional: Cargar datos adicionales o realizar configuraciones iniciales.
   }
 }

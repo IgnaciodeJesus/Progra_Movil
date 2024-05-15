@@ -157,8 +157,7 @@ final List<Usuario> USUARIOS = [
       dni: "12345678",
       correo: "juan.perez@example.com",
       password: "securepassword123",
-      fotoPerfil:
-          "https://img.freepik.com/foto-gratis/retrato-hombre-reir_23-2148859448.jpg?size=338&ext=jpg")
+      fotoPerfil: "")
 ];
 final List<Funcion> FUNCIONES = [
   Funcion(
@@ -168,12 +167,12 @@ final List<Funcion> FUNCIONES = [
       fechahora: DateTime(2024, 4, 23, 15, 30, 0)),
   Funcion(
       id: 2,
-      peliculaId: 1,
+      peliculaId: 2,
       salaId: 2,
       fechahora: DateTime(2024, 4, 23, 19, 30, 0)),
   Funcion(
       id: 3,
-      peliculaId: 1,
+      peliculaId: 3,
       salaId: 3,
       fechahora: DateTime(2024, 4, 23, 16, 0, 0)),
   Funcion(
@@ -183,32 +182,32 @@ final List<Funcion> FUNCIONES = [
       fechahora: DateTime(2024, 4, 23, 17, 30, 0)),
   Funcion(
       id: 5,
-      peliculaId: 1,
+      peliculaId: 2,
       salaId: 5,
       fechahora: DateTime(2024, 4, 23, 18, 20, 0)),
   Funcion(
       id: 6,
-      peliculaId: 1,
+      peliculaId: 3,
       salaId: 6,
       fechahora: DateTime(2024, 4, 23, 20, 30, 0)),
   Funcion(
       id: 7,
-      peliculaId: 1,
+      peliculaId: 2,
       salaId: 1,
       fechahora: DateTime(2024, 4, 23, 21, 30, 0)),
   Funcion(
       id: 8,
-      peliculaId: 1,
+      peliculaId: 3,
       salaId: 2,
       fechahora: DateTime(2024, 4, 23, 22, 30, 0)),
   Funcion(
       id: 1,
-      peliculaId: 1,
+      peliculaId: 2,
       salaId: 1,
       fechahora: DateTime(2024, 4, 24, 15, 30, 0)),
   Funcion(
       id: 2,
-      peliculaId: 1,
+      peliculaId: 3,
       salaId: 2,
       fechahora: DateTime(2024, 4, 24, 19, 30, 0)),
   Funcion(
@@ -218,12 +217,12 @@ final List<Funcion> FUNCIONES = [
       fechahora: DateTime(2024, 4, 24, 16, 0, 0)),
   Funcion(
       id: 1,
-      peliculaId: 1,
+      peliculaId: 2,
       salaId: 1,
       fechahora: DateTime(2024, 4, 25, 14, 30, 0)),
   Funcion(
       id: 2,
-      peliculaId: 1,
+      peliculaId: 3,
       salaId: 2,
       fechahora: DateTime(2024, 4, 25, 16, 45, 0)),
   Funcion(
