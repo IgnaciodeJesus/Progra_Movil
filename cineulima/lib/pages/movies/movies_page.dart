@@ -9,21 +9,21 @@ class MoviesPage extends StatelessWidget {
 
   MoviesPage({super.key});
 
-
   Widget _buildBody(BuildContext context) {
-    final double itemHeight = (MediaQuery.of(context).size.height - kToolbarHeight - 124) / 2;
+    final double itemHeight =
+        (MediaQuery.of(context).size.height - kToolbarHeight - 124) / 2;
     final double itemWidth = MediaQuery.of(context).size.width / 2;
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left:15.0),
+          padding: const EdgeInsets.only(left: 15.0),
           child: TextField(
             controller: control.filtro,
             decoration: InputDecoration(
                 hintText: 'Buscar película por título',
-                hintStyle: GoogleFonts.itim(textStyle: const TextStyle(fontSize: 18)),
-                border: InputBorder.none
-            ),
+                hintStyle:
+                    GoogleFonts.itim(textStyle: const TextStyle(fontSize: 18)),
+                border: InputBorder.none),
             style: GoogleFonts.itim(textStyle: const TextStyle(fontSize: 18)),
             onChanged: (value) => control.filtrarPelicula(value),
           ),
@@ -32,14 +32,16 @@ class MoviesPage extends StatelessWidget {
           child: GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
-            childAspectRatio: context.isPortrait ? itemWidth / itemHeight : (itemWidth / 2) / (itemHeight) ,
+            childAspectRatio: context.isPortrait
+                ? itemWidth / itemHeight
+                : (itemWidth / 2) / (itemHeight),
             children: control.filteredPeliculas.map((p) {
               return GestureDetector(
                 onTap: () {
                   // Navigate to the new page
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MovinfoPage(p:p)),
+                    MaterialPageRoute(builder: (context) => MovinfoPage(p: p)),
                   );
                 },
                 child: Container(
@@ -49,7 +51,7 @@ class MoviesPage extends StatelessWidget {
                   child: Image.network(
                     p.imagenUrl,
                     fit: BoxFit.cover,
-                      alignment: Alignment.topCenter,
+                    alignment: Alignment.topCenter,
                   ),
                 ),
               );
@@ -69,5 +71,4 @@ class MoviesPage extends StatelessWidget {
       body: _buildBody(context),
     ));
   }
-
 }
