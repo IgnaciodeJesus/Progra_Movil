@@ -8,7 +8,8 @@ class MoviesController extends GetxController {
 
   TextEditingController filtro = TextEditingController();
 
-  List<Pelicula> filteredPeliculas = [];
+  RxList<Pelicula> filteredPeliculas = RxList();
+
   @override
   void onInit() {
     filteredPeliculas.assignAll(PELICULAS);
@@ -19,9 +20,9 @@ class MoviesController extends GetxController {
     if (filtro.isEmpty) {
       filteredPeliculas.assignAll(PELICULAS);
     } else {
-      filteredPeliculas.clear();
-      filteredPeliculas.addAll(PELICULAS.where((pelicula) =>
-          pelicula.titulo.toLowerCase().contains(filtro.toLowerCase())));
+      filteredPeliculas.value = PELICULAS.where((pelicula) =>
+              pelicula.titulo.toLowerCase().contains(filtro.toLowerCase()))
+          .toList();
     }
 
     update();

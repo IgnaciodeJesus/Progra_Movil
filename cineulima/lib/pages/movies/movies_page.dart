@@ -29,7 +29,7 @@ class MoviesPage extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: GridView.count(
+          child: Obx(() => GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
             childAspectRatio: context.isPortrait
@@ -38,7 +38,6 @@ class MoviesPage extends StatelessWidget {
             children: control.filteredPeliculas.map((p) {
               return GestureDetector(
                 onTap: () {
-                  // Navigate to the new page
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => MovinfoPage(p: p)),
@@ -56,7 +55,7 @@ class MoviesPage extends StatelessWidget {
                 ),
               );
             }).toList(),
-          ),
+          )),
         )
       ],
     );
