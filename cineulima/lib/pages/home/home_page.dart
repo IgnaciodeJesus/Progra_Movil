@@ -1,3 +1,4 @@
+import 'package:cineulima/Widgets/AppBar.dart';
 import 'package:cineulima/pages/carrousel/carrousel_page.dart';
 import 'package:cineulima/pages/cines/cines_page.dart';
 import 'package:cineulima/pages/movies/movies_page.dart';
@@ -23,14 +24,12 @@ class _HomePageState extends State<HomePage> {
     CarrouselPage(),
     MoviesPage(),
     CinesPage(),
-    PerfilPage()
   ];
 
   static final List<String> _widgetTitles = <String>[
     'Cine ULima',
     'Películas',
     'Cines',
-    'Perfil'
   ];
 
   void _onItemTapped(int index) {
@@ -85,31 +84,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-          title: Text(_widgetTitles[_selectedIndex],
-              style: GoogleFonts.openSans(
-                textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 24),
-              )),
-          automaticallyImplyLeading: false,
-          backgroundColor: const Color(0XFFF26F29),
-          actions: [
-            IconButton(
-              onPressed: () {
-                if (Get.context != null) {
-                  Get.to(() => PerfilPage());
-                } else {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PerfilPage()));
-                }
-              },
-              icon: const Icon(Icons.account_circle_rounded,
-                  color: Colors.white, size: 40),
-              tooltip: "Ver perfil",
-            )
-          ]),
+      appBar: buildAppBar(_widgetTitles[_selectedIndex], context, true, false),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: _navigationBottom(),
     );

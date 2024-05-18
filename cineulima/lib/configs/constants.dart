@@ -201,33 +201,43 @@ final List<Funcion> FUNCIONES = [
       salaId: 2,
       fechahora: DateTime(2024, 4, 23, 22, 30, 0)),
   Funcion(
-      id: 1,
+      id: 9,
       peliculaId: 2,
       salaId: 1,
       fechahora: DateTime(2024, 4, 24, 15, 30, 0)),
   Funcion(
-      id: 2,
+      id: 10,
       peliculaId: 3,
       salaId: 2,
       fechahora: DateTime(2024, 4, 24, 19, 30, 0)),
   Funcion(
-      id: 3,
+      id: 11,
       peliculaId: 1,
       salaId: 3,
       fechahora: DateTime(2024, 4, 24, 16, 0, 0)),
   Funcion(
-      id: 1,
+      id: 12,
       peliculaId: 2,
       salaId: 1,
       fechahora: DateTime(2024, 4, 25, 14, 30, 0)),
   Funcion(
-      id: 2,
+      id: 13,
       peliculaId: 3,
       salaId: 2,
       fechahora: DateTime(2024, 4, 25, 16, 45, 0)),
   Funcion(
-      id: 3,
+      id: 14,
       peliculaId: 1,
       salaId: 3,
       fechahora: DateTime(2024, 4, 25, 21, 25, 0)),
+  Funcion(
+      id: 15,
+      peliculaId: 2,
+      salaId: 1,
+      fechahora: DateTime(2024, 4, 23, 14, 0, 0)),
+  Funcion(
+      id: 16,
+      peliculaId: 2,
+      salaId: 1,
+      fechahora: DateTime(2024, 4, 23, 15, 1, 0)),
 ];

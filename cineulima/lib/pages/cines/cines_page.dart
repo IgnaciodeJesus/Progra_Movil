@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'cines_controller.dart';
-import '../cineinfo/cineinfo_page.dart'; // Asegúrate de que este importe esté correcto
+import '../cineinfo/cineinfo_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CinesPage extends StatelessWidget {
@@ -31,7 +31,14 @@ class CinesPage extends StatelessWidget {
                     itemCount: control.filteredSalas.length,
                     itemBuilder: (context, index) {
                       final sala = control.filteredSalas[index];
-                      return Container(
+                      return GestureDetector(
+                          onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CineInfoPage(sala: sala)),
+                        );
+                      },
+                      child: Container(
                         height: 80,
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -49,17 +56,8 @@ class CinesPage extends StatelessWidget {
                                       TextStyle(fontWeight: FontWeight.w900))),
                           subtitle: Text(sala.direccion,
                               style: GoogleFonts.openSans()),
-                          onTap: () {
-                            if (Get.context != null) {
-                              Get.to(() => CineInfoPage());
-                            } else {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CineInfoPage()));
-                            }
-                          },
                         ),
+                      )
                       );
                     },
                   )),
@@ -72,12 +70,10 @@ class CinesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: null,
         body: _buildBody(context),
-      ),
-    );
+      );
   }
 }

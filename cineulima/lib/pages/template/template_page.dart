@@ -15,11 +15,10 @@ class TemplatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: null,
       body: _buildBody(context),
-    ));
+    );
   }
 }

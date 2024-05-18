@@ -71,6 +71,8 @@ class MovinfoController extends GetxController {
             funcion.fechahora.day) == fecha
     ).toList();
 
+    funcionesFiltradas.sort((a, b) => a.fechahora.compareTo(b.fechahora));
+
     Map<int, List<Funcion>> funcionesPorSala = {};
     funcionesFiltradas.forEach((funcion) {
       if (!funcionesPorSala.containsKey(funcion.salaId)) {

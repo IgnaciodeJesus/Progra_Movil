@@ -1,3 +1,4 @@
+import 'package:cineulima/Widgets/AppBar.dart';
 import 'package:cineulima/pages/movies/movies_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -239,33 +240,10 @@ class MovinfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.chevron_left, color: Colors.white, size: 28),
-            onPressed: () {
-              Navigator.pop(context);
-
-              },
-          ),
-          titleSpacing: 5,
-          title: Text(
-            'Peliculas',
-            style: GoogleFonts.openSans(
-              textStyle: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w900,
-                fontSize: 24,
-              ),
-            ),
-          ),
-          automaticallyImplyLeading: false,
-          backgroundColor: const Color(0XFFF26F29),
-        ),
+        appBar: buildAppBar('Películas', context, false, true),
         body: _buildBody(context),
-      ),
-    );
+      );
   }
 }

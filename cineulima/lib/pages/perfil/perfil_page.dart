@@ -42,10 +42,6 @@ class PerfilPage extends StatelessWidget {
       actions: [
         IconButton(
           onPressed: () {
-            //     // Ensure Get context is available
-            //     if (Get.context != null) {
-            //       Get.to(() => LoginPage());
-            //     } else {
             //       Navigator.push(context,
             //           MaterialPageRoute(builder: (context) => LoginPage()));
             //     }
