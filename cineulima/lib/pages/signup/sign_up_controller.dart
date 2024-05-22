@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cineulima/models/entities/Usuario.dart';
+import 'package:cineulima/configs/constants.dart';
 
 class SignUpController extends GetxController {
-  // Definiendo TextEditingController para cada campo
   late TextEditingController nombreController;
   late TextEditingController apellidoController;
   late TextEditingController dniController;
@@ -11,7 +11,6 @@ class SignUpController extends GetxController {
   late TextEditingController passwordController;
   late TextEditingController confirmPasswordController;
 
-  // Definiendo observables para los campos
   var nombre = ''.obs;
   var apellido = ''.obs;
   var dni = ''.obs;
@@ -22,7 +21,6 @@ class SignUpController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Inicializando los TextEditingController
     nombreController = TextEditingController();
     apellidoController = TextEditingController();
     dniController = TextEditingController();
@@ -33,7 +31,6 @@ class SignUpController extends GetxController {
 
   @override
   void onClose() {
-    // Descartando los TextEditingController
     nombreController.dispose();
     apellidoController.dispose();
     dniController.dispose();
@@ -68,7 +65,7 @@ class SignUpController extends GetxController {
     }
 
     Usuario nuevoUsuario = Usuario(
-      id: 0,
+      id: USUARIOS.length + 1,
       nombre: nombre.value,
       apellido: apellido.value,
       dni: dni.value,
@@ -77,18 +74,25 @@ class SignUpController extends GetxController {
       fotoPerfil: '',
     );
 
-    // Simulando registro exitoso
-    print(nuevoUsuario.toJson());
+    // Agregar el nuevo usuario a la lista observable de usuarios
+    USUARIOS.add(nuevoUsuario);
 
-    // Mostrar diálogo de confirmación
     Get.defaultDialog(
       title: "Registro Exitoso",
       middleText: "¡Te has registrado correctamente!",
       textConfirm: "Aceptar",
       onConfirm: () {
-        Get.back(); // Cerrar el diálogo
-        Get.toNamed('/login'); // Navegar a la página de login
+        Get.back();
+        Get.toNamed('/login');
       },
     );
+
+    // Limpiar los campos de entrada
+    nombreController.clear();
+    apellidoController.clear();
+    dniController.clear();
+    correoController.clear();
+    passwordController.clear();
+    confirmPasswordController.clear();
   }
 }

@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import '../models/entities/Funcion.dart';
 import '../models/entities/Pelicula.dart';
 import '../models/entities/Usuario.dart';
@@ -149,32 +151,36 @@ final List<Sala> SALAS = [
       imagenUrl:
           "https://orientacion.universia.edu.pe/imgs2011/imagenes/1-2019_10_-2020_10_16_161044@2x.jpg"),
 ];
-final List<Usuario> USUARIOS = [
+// Lista observable de usuarios
+RxList<Usuario> USUARIOS = <Usuario>[
   Usuario(
-      id: 1,
-      nombre: "Juan",
-      apellido: "Pérez",
-      dni: "12345678",
-      correo: "juan.perez@example.com",
-      password: "juanperez123",
-      fotoPerfil: ""),
+    id: 1,
+    nombre: "Juan",
+    apellido: "Pérez",
+    dni: "12345678",
+    correo: "juan.perez@example.com",
+    password: "juanperez123",
+    fotoPerfil: "",
+  ),
   Usuario(
-      id: 2,
-      nombre: "Pedro",
-      apellido: "Sanchez",
-      dni: "98765432",
-      correo: "pedro.sanchez@example.com",
-      password: "pedrosanchez123",
-      fotoPerfil: ""),
+    id: 2,
+    nombre: "Pedro",
+    apellido: "Sanchez",
+    dni: "98765432",
+    correo: "pedro.sanchez@example.com",
+    password: "pedrosanchez123",
+    fotoPerfil: "",
+  ),
   Usuario(
-      id: 3,
-      nombre: "Luis",
-      apellido: "Tavero",
-      dni: "99999999",
-      correo: "luis.tavero@example.com",
-      password: "luistavero123",
-      fotoPerfil: ""),
-];
+    id: 3,
+    nombre: "Luis",
+    apellido: "Tavero",
+    dni: "99999999",
+    correo: "luis.tavero@example.com",
+    password: "luistavero123",
+    fotoPerfil: "",
+  ),
+].obs; // El método .obs convierte la lista en una RxList
 final List<Funcion> FUNCIONES = [
   Funcion(
       id: 1,

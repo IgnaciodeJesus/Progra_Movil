@@ -1,6 +1,7 @@
+import 'package:cineulima/pages/recover/password_recovery_page.dart';
+import 'package:cineulima/pages/signup/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cineulima/pages/signup/SignUpPage.dart';
 import 'package:cineulima/pages/login/LoginPage.dart'; // Importa la página de inicio de sesión
 
 void main() {
@@ -18,8 +19,12 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       getPages: [
         GetPage(name: '/signup', page: () => SignUpPage()),
-        GetPage(name: '/login', page: () =>
-LoginPage()), // Define la ruta a la página de inicio de sesión
+        GetPage(name: '/recover', page: () => PasswordRecoveryPage()),
+
+        GetPage(
+            name: '/login',
+            page: () =>
+                LoginPage()), // Define la ruta a la página de inicio de sesión
       ],
     );
   }

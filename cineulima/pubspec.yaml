@@ -31,6 +31,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   font_awesome_flutter: ^10.6.0
   get: ^4.6.5
@@ -44,7 +47,7 @@ dependencies:
   http: ^1.1.2
   image_picker: ^0.8.5
   flutter_markdown: ^0.6.10
-  flutter_keyboard_visibility: ^6.0.0 # Asegúrate de que esta línea esté presente
+  flutter_keyboard_visibility: ^6.0.0
 
 dev_dependencies:
   flutter_test:

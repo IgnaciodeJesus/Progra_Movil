@@ -4,8 +4,8 @@ import 'package:get/get_rx/get_rx.dart';
 import 'package:cineulima/pages/home/home_page.dart';
 import '../../configs/constants.dart';
 import '../../models/entities/Usuario.dart';
-import '../recover/recoverPage.dart';
-import '../signup/SignUpPage.dart';
+import '../recover/password_recovery_page.dart';
+import '../signup/sign_up_page.dart';
 
 class LoginController extends GetxController {
   TextEditingController userController = TextEditingController();
@@ -34,7 +34,6 @@ class LoginController extends GetxController {
     bool found = false;
     Usuario userLogged = Usuario.empty();
 
-
     for (Usuario u in USUARIOS) {
       print('1 ++++++++++++++++++++');
       print(user);
@@ -57,7 +56,7 @@ class LoginController extends GetxController {
                   usuarioLogged: userLogged,
                 )),
       );
-      } else {
+    } else {
       print('error: usuario incorrecto');
       message.value = 'Usuario incorrecto';
       messageColor.value = Colors.red;
@@ -77,7 +76,7 @@ class LoginController extends GetxController {
   void goToRecover(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => RecoverPage()),
+      MaterialPageRoute(builder: (context) => PasswordRecoveryPage()),
     );
   }
 }

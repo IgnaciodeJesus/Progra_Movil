@@ -1,4 +1,4 @@
-import 'package:cineulima/pages/signup/SignUpController.dart';
+import 'package:cineulima/pages/signup/sign_up_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -59,7 +59,8 @@ class SignUpPage extends StatelessWidget {
                             children: [
                               Text(
                                 '¿Ya tienes una cuenta? ',
-                                style: TextStyle(fontSize: 16),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black),
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -141,29 +142,23 @@ class SignUpPage extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             control.createAccount();
-            _clearTextFields();
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFFF89400),
+            backgroundColor:
+                Color(0xFFF89400), // Cambio de color de fondo del botón
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-            textStyle: TextStyle(
+          ),
+          child: DefaultTextStyle(
+            style: TextStyle(
               fontSize: 18,
               color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
+            child: Text('REGISTRARSE'), // Texto en mayúsculas
           ),
-          child: Text('REGISTRARSE'),
         ),
       ],
     );
-  }
-
-  void _clearTextFields() {
-    control.nombreController.clear();
-    control.apellidoController.clear();
-    control.dniController.clear();
-    control.correoController.clear();
-    control.passwordController.clear();
-    control.confirmPasswordController.clear();
   }
 
   Widget _buildTextField({
@@ -179,10 +174,13 @@ class SignUpPage extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: TextStyle(color: Colors.black),
         prefixIcon: Icon(icon),
-        border: UnderlineInputBorder(),
-        filled: true,
-        fillColor: Colors.white,
+        border: UnderlineInputBorder(
+          borderSide:
+              BorderSide(color: Colors.grey), // Color del borde inferior
+        ),
+        filled: false, // Sin color de fondo
       ),
     );
   }
