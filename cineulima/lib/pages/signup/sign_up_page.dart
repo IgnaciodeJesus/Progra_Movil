@@ -3,87 +3,88 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
+import '../../Widgets/AppBar.dart';
+
 class SignUpPage extends StatelessWidget {
   final SignUpController control = Get.put(SignUpController());
 
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityProvider(
-      child: MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Color(0XFFF26F29), // Cambio de color de fondo
-          ),
-          body: Container(
-            color: Colors.white, // Fondo blanco
-            padding: EdgeInsets.all(20),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  KeyboardVisibilityBuilder(
-                    builder: (context, isKeyboardVisible) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          if (!isKeyboardVisible) ...[
-                            SizedBox(height: 20),
-                            Center(
+      child: Scaffold(
+        appBar: buildAppBar('', context, false, false),
+        body: Container(
+          color: Colors.white, // Fondo blanco
+          margin: EdgeInsets.symmetric(horizontal: 15),
+          padding: EdgeInsets.all(20),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                KeyboardVisibilityBuilder(
+                  builder: (context, isKeyboardVisible) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (!isKeyboardVisible) ...[
+                          Container(
+                            child: Center(
                               child: Image.asset(
                                 'assets/images/logo.png',
-                                height: 100,
+                                height: 90,
+                              ),
+                            ),
+                            margin: EdgeInsets.symmetric(vertical: 20),
+                          )
+                        ],
+                        Text(
+                          'Registro',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                            color: Color(0xFFFDE0B4),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: _form(context),
+                        ),
+                        SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '¿Ya tienes una cuenta? ',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.black),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Get.toNamed('/login');
+                              },
+                              child: Text(
+                                'Iniciar Sesión',
+                                style: TextStyle(
+                                  color: Color(0xFF0000FF),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ],
-                          SizedBox(height: 20),
-                          Text(
-                            'Registro',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 20),
-                          Container(
-                            padding: EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFFDE0B4),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: _form(context),
-                          ),
-                          SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '¿Ya tienes una cuenta? ',
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Get.toNamed('/login');
-                                },
-                                child: Text(
-                                  'Iniciar Sesión',
-                                  style: TextStyle(
-                                    color: Color(0xFF0000FF),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 20),
-                        ],
-                      );
-                    },
-                  ),
-                ],
-              ),
+                        ),
+                        SizedBox(height: 20),
+                      ],
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ),
@@ -101,28 +102,28 @@ class SignUpPage extends StatelessWidget {
           controller: control.nombreController,
           value: control.nombre,
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 6),
         _buildTextField(
           label: 'Apellido',
           icon: Icons.person_outline,
           controller: control.apellidoController,
           value: control.apellido,
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 6),
         _buildTextField(
           label: 'DNI',
           icon: Icons.badge,
           controller: control.dniController,
           value: control.dni,
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 6),
         _buildTextField(
           label: 'Correo',
           icon: Icons.email,
           controller: control.correoController,
           value: control.correo,
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 6),
         _buildTextField(
           label: 'Contraseña',
           icon: Icons.lock,
@@ -130,7 +131,7 @@ class SignUpPage extends StatelessWidget {
           value: control.password,
           obscureText: true,
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 6),
         _buildTextField(
           label: 'Confirmar Contraseña',
           icon: Icons.lock,
@@ -138,7 +139,7 @@ class SignUpPage extends StatelessWidget {
           value: control.confirmPassword,
           obscureText: true,
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 15),
         ElevatedButton(
           onPressed: () {
             control.createAccount();
@@ -146,7 +147,7 @@ class SignUpPage extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor:
                 Color(0XFFF26F29), // Cambio de color de fondo del botón
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 40),
           ),
           child: DefaultTextStyle(
             style: TextStyle(
@@ -157,6 +158,9 @@ class SignUpPage extends StatelessWidget {
             child: Text('REGISTRARSE'), // Texto en mayúsculas
           ),
         ),
+        SizedBox(
+          height: 5,
+        )
       ],
     );
   }

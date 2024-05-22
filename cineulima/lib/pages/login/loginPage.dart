@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../Widgets/AppBar.dart';
 import './loginController.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,18 +10,19 @@ class LoginPage extends StatelessWidget {
 
   Widget _form(BuildContext context, bool isKeyBoardOpen) {
     return Container(
-      height: 290,
       decoration: BoxDecoration(
-          color: Color(0xFFFDE0B4),
-          borderRadius: BorderRadius.circular(20),
-          ),
+        color: Color(0xFFFDE0B4),
+        borderRadius: BorderRadius.circular(20),
+      ),
       margin: EdgeInsets.fromLTRB(
         MediaQuery.of(context).size.width * 0.1, // Margen izquierdo
-        MediaQuery.of(context).size.width * (isKeyBoardOpen ? 0.3 : 0.65), //  Margen superior
+        MediaQuery.of(context).size.width *
+            (isKeyBoardOpen ? 0.3 : 0.65), //  Margen superior
         MediaQuery.of(context).size.width * 0.1, // Margen derecho
-        MediaQuery.of(context).size.width * 0.1, // Margen inferior
+        MediaQuery.of(context).size.width *
+            (isKeyBoardOpen ? 0.05 : 0.5), // Margen inferior
       ),
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -40,13 +41,13 @@ class LoginPage extends StatelessWidget {
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Colors.black),
-                       // Color del borde al enfocar
+                  borderSide: BorderSide(color: Colors.black),
+                  // Color del borde al enfocar
                 ),
                 prefixIcon: Icon(
-                Icons.person, // Aquí puedes poner el ícono que desees
-                color: Colors.black, // Ajusta el color del ícono si es necesario
+                  Icons.person, // Aquí puedes poner el ícono que desees
+                  color:
+                      Colors.black, // Ajusta el color del ícono si es necesario
                 ),
               ),
               controller: control.userController,
@@ -69,8 +70,9 @@ class LoginPage extends StatelessWidget {
                       color: Colors.black), // Colr del borde al enfocaro
                 ),
                 prefixIcon: Icon(
-                Icons.lock, // Ícono de candado
-                color: Colors.black, // Ajusta el color del ícono si es necesario
+                  Icons.lock, // Ícono de candado
+                  color:
+                      Colors.black, // Ajusta el color del ícono si es necesario
                 ),
               ),
               controller: control.passController,
@@ -92,7 +94,8 @@ class LoginPage extends StatelessWidget {
                   padding: EdgeInsets
                       .zero, // Padding cero para eliminar el espacio interno
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0), // Bordes cero para eliminar los bordes
+                    borderRadius: BorderRadius.circular(
+                        30.0), // Bordes cero para eliminar los bordes
                   ),
                 ),
                 child: Text(
@@ -104,15 +107,16 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-            Obx(() => Text(
-                  control.message.value,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: control.messageColor.value,
-                  ),
+            Obx(
+              () => Text(
+                control.message.value,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: control.messageColor.value,
                 ),
               ),
+            ),
             _links(context)
           ])
         ],
@@ -123,9 +127,6 @@ class LoginPage extends StatelessWidget {
   Widget _links(BuildContext context) {
     return Container(
       child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-        SizedBox(
-          height: 10,
-        ),
         Row(
           children: [
             Expanded(
@@ -155,77 +156,71 @@ class LoginPage extends StatelessWidget {
     return Container(color: Color(0XFFFFFFFF));
   }
 
-  Widget _imageBackground(BuildContext context) {
+  Widget _imageBackground(BuildContext context, bool isKeyBoardOpen) {
     return Column(
       children: [
         Align(
             alignment: Alignment.topCenter,
-                child: Container(
-                    width: MediaQuery.of(context).size.width * 0.8, // 80% del ancho de la pantalla
-                    height: MediaQuery.of(context).size.height * 0.25, // 40% de la altura de la pantalla
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/images/login.png'),
-                            fit: BoxFit.contain)),
-                )
-            ),
-        Expanded(child: Text(''), flex: 1),
+            child: Container(
+              height: 90,
+              margin: EdgeInsets.only(top: isKeyBoardOpen ? 15 : 80),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/logo.png'),
+                      fit: BoxFit.contain)),
+            )),
       ],
     );
   }
 
   Widget _titlePage(BuildContext context) {
     return Container(
-        margin: EdgeInsets.fromLTRB(
-        MediaQuery.of(context).size.width * 0.28, // Margen izquierdo
+      alignment: Alignment.topCenter,
+      margin: EdgeInsets.fromLTRB(
+        MediaQuery.of(context).size.width * 0.2, // Margen izquierdo
         MediaQuery.of(context).size.width * 0.5,
-        MediaQuery.of(context).size.width * 0.28,
+        MediaQuery.of(context).size.width * 0.2,
         MediaQuery.of(context).size.width * 0.1,
+      ),
+      child: Text(
+        'Inicio de sesión',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 24.0,
         ),
-          child: Text(
-            'Inicio de sesión',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 24.0,
-            ),
-          ),
-         );
-  }  
-
-  Widget _signuPPage(BuildContext context) {
-    return Container(
-            child: Column(mainAxisAlignment: MainAxisAlignment.end, 
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '¿No tienes una cuenta? ',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Get.toNamed('/signup');
-                                },
-                                child: Text(
-                                  'Regístrate',
-                                  style: TextStyle(
-                                    color: Color(0xFF0000FF),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
-                    ),
-                SizedBox(height: 150),
-            ]
-    ),
+      ),
     );
-  } 
+  }
+
+  Widget _signuPPage(BuildContext context, bool isKeyBoardOpen) {
+    return Visibility(
+        visible: !isKeyBoardOpen,
+        child: Container(
+          margin: EdgeInsets.only(top: 550),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '¿No tienes una cuenta? ',
+                style: TextStyle(fontSize: 16),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed('/signup');
+                },
+                child: Text(
+                  'Regístrate',
+                  style: TextStyle(
+                    color: Color(0xFF0000FF),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
+  }
 
   Widget _buildBody(BuildContext context) {
     final bool isKeyBoardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
@@ -234,10 +229,10 @@ class LoginPage extends StatelessWidget {
     print('2 +++++++++++++++++++++++++');
     return Stack(children: [
       _background(context),
-      _imageBackground(context),
+      _imageBackground(context, isKeyBoardOpen),
       _titlePage(context),
       _form(context, isKeyBoardOpen),
-      _signuPPage(context),
+      _signuPPage(context, isKeyBoardOpen),
     ]);
   }
 
@@ -245,10 +240,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0XFFF26F29),
-        automaticallyImplyLeading: false,
-      ),
+      appBar: buildAppBar('', context, false, false),
       body: _buildBody(context),
     );
   }

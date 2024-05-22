@@ -1,3 +1,4 @@
+import 'package:cineulima/Widgets/AppBar.dart';
 import 'package:cineulima/pages/recover/password_recovery_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,19 +10,17 @@ class PasswordRecoveryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0XFFF26F29),
-      ),
+      appBar: buildAppBar('', context, false, true),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 30), // Espacio adicional arriba
+              SizedBox(height: 70), // Espacio adicional arriba
               Image.asset(
                 'assets/images/logo.png',
-                height: 100,
+                height: 90,
               ),
               SizedBox(height: 30),
               Text(
@@ -34,10 +33,11 @@ class PasswordRecoveryPage extends StatelessWidget {
               ),
               SizedBox(height: 30),
               Container(
-                padding: EdgeInsets.all(20),
+                margin: EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 decoration: BoxDecoration(
                   color: Color(0xFFFDE0B4),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -47,11 +47,11 @@ class PasswordRecoveryPage extends StatelessWidget {
                       onChanged: (value) => control.dni.value = value,
                       decoration: InputDecoration(
                         labelText: 'DNI',
-                        prefixIcon: Icon(Icons.badge),
+                        prefixIcon: Icon(Icons.person),
                         border: UnderlineInputBorder(),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 6),
                     TextFormField(
                       controller: control.correoController,
                       onChanged: (value) => control.correo.value = value,
@@ -61,14 +61,14 @@ class PasswordRecoveryPage extends StatelessWidget {
                         border: UnderlineInputBorder(),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 15),
                     ElevatedButton(
                       onPressed: () {
                         control.recoverPassword();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0XFFF26F29),
-                        padding: EdgeInsets.symmetric(vertical: 16),
+                        padding: EdgeInsets.symmetric(vertical: 8),
                       ),
                       child: Text(
                         'RECUPERAR',
@@ -79,12 +79,13 @@ class PasswordRecoveryPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    SizedBox(height: 5)
                   ],
                 ),
               ),
               SizedBox(
                   height:
-                      70), // Espacio adicional entre el contenedor y el texto
+                      50), // Espacio adicional entre el contenedor y el texto
               Align(
                 alignment: Alignment.center,
                 child: GestureDetector(
@@ -102,7 +103,7 @@ class PasswordRecoveryPage extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: 'Registrarse',
+                          text: 'Regístrate',
                           style: TextStyle(
                             color: Color(0xFF0000FF),
                             fontSize: 16,
