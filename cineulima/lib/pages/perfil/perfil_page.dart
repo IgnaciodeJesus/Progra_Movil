@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:io'; // Para usar FileImage
 import '../../configs/constants.dart';
+import 'package:cineulima/pages/login/LoginPage.dart'; 
 
 class PerfilPage extends StatelessWidget {
   PerfilPage({Key? key}) : super(key: key);
@@ -42,13 +43,13 @@ class PerfilPage extends StatelessWidget {
       actions: [
         IconButton(
           onPressed: () {
-            //       Navigator.push(context,
-            //           MaterialPageRoute(builder: (context) => LoginPage()));
-            //     }
-          },
+                  Navigator.push(context,
+                       MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+               },
           icon: const Icon(Icons.logout_rounded, color: Colors.white, size: 40),
           tooltip: "Ver perfil",
-        )
+        ),
       ],
       backgroundColor: Color(0XFFF26F29),
       automaticallyImplyLeading: false,

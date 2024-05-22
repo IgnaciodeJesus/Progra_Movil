@@ -15,13 +15,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      initialRoute: '/signup',
+      initialRoute: '/login',
       getPages: [
         GetPage(name: '/signup', page: () => SignUpPage()),
-        GetPage(
-            name: '/login',
-            page: () =>
-                LoginPage()), // Define la ruta a la página de inicio de sesión
+        GetPage(name: '/login', page: () =>
+LoginPage()), // Define la ruta a la página de inicio de sesión
       ],
     );
   }

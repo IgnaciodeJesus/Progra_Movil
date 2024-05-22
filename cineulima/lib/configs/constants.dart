@@ -156,8 +156,24 @@ final List<Usuario> USUARIOS = [
       apellido: "Pérez",
       dni: "12345678",
       correo: "juan.perez@example.com",
-      password: "securepassword123",
-      fotoPerfil: "")
+      password: "juanperez123",
+      fotoPerfil: ""),
+  Usuario(
+      id: 2,
+      nombre: "Pedro",
+      apellido: "Sanchez",
+      dni: "98765432",
+      correo: "pedro.sanchez@example.com",
+      password: "pedrosanchez123",
+      fotoPerfil: ""),
+  Usuario(
+      id: 3,
+      nombre: "Luis",
+      apellido: "Tavero",
+      dni: "99999999",
+      correo: "luis.tavero@example.com",
+      password: "luistavero123",
+      fotoPerfil: ""),
 ];
 final List<Funcion> FUNCIONES = [
   Funcion(

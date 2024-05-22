@@ -8,17 +8,24 @@ import 'package:get/get.dart';
 import 'home_controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../models/entities/Usuario.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final Usuario usuarioLogged;
+
+  //Constructor
+  const HomePage({Key? key, required this.usuarioLogged}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState(user: usuarioLogged);
 }
 
 class _HomePageState extends State<HomePage> {
   HomeController control = Get.put(HomeController());
   int _selectedIndex = 0;
+  final Usuario user;
+
+  _HomePageState({required this.user});
 
   static final List<Widget> _widgetOptions = <Widget>[
     CarrouselPage(),

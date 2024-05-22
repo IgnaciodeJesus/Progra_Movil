@@ -19,6 +19,15 @@ class Usuario {
   String password;
   String fotoPerfil;
 
+ Usuario.empty()
+      : id = 0,
+        nombre = '',
+        apellido = '',
+        dni = '',
+        correo = '',
+        password = '',
+        fotoPerfil = '';
+
   Usuario({
     required this.id,
     required this.nombre,
