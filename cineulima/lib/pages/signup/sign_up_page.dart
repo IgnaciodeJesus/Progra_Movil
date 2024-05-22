@@ -12,7 +12,7 @@ class SignUpPage extends StatelessWidget {
       child: MaterialApp(
         home: Scaffold(
           appBar: AppBar(
-            backgroundColor: Color(0xFFF89400), // Cambio de color de fondo
+            backgroundColor: Color(0XFFF26F29), // Cambio de color de fondo
           ),
           body: Container(
             color: Colors.white, // Fondo blanco
@@ -69,7 +69,7 @@ class SignUpPage extends StatelessWidget {
                                 child: Text(
                                   'Iniciar Sesión',
                                   style: TextStyle(
-                                    color: Colors.blue,
+                                    color: Color(0xFF0000FF),
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -145,7 +145,7 @@ class SignUpPage extends StatelessWidget {
           },
           style: ElevatedButton.styleFrom(
             backgroundColor:
-                Color(0xFFF89400), // Cambio de color de fondo del botón
+                Color(0XFFF26F29), // Cambio de color de fondo del botón
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
           ),
           child: DefaultTextStyle(

@@ -10,7 +10,7 @@ class PasswordRecoveryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orange,
+        backgroundColor: Color(0XFFF26F29),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -67,14 +67,15 @@ class PasswordRecoveryPage extends StatelessWidget {
                         control.recoverPassword();
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orange,
+                        backgroundColor: const Color(0XFFF26F29),
                         padding: EdgeInsets.symmetric(vertical: 16),
                       ),
                       child: Text(
-                        'Recuperar',
+                        'RECUPERAR',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -103,7 +104,7 @@ class PasswordRecoveryPage extends StatelessWidget {
                         TextSpan(
                           text: 'Registrarse',
                           style: TextStyle(
-                            color: Colors.blue,
+                            color: Color(0xFF0000FF),
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
