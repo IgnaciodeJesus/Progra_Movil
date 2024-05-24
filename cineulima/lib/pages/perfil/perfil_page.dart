@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:io'; // Para usar FileImage
 import '../../configs/constants.dart';
-import 'package:cineulima/pages/login/LoginPage.dart'; 
+import 'package:cineulima/pages/login/LoginPage.dart';
 
 class PerfilPage extends StatelessWidget {
   PerfilPage({Key? key}) : super(key: key);
@@ -14,14 +14,14 @@ class PerfilPage extends StatelessWidget {
     // Crea una instancia del controlador
     final PerfilController controller =
         Get.put(PerfilController(), permanent: true);
-
+    controller.onInit();
     return Scaffold(
-      appBar: _buildAppBar(context),
+      appBar: _buildAppBar(context, controller),
       body: _buildBody(controller),
     );
   }
 
-  AppBar _buildAppBar(BuildContext context) {
+  AppBar _buildAppBar(BuildContext context, PerfilController controller) {
     return AppBar(
       leading: IconButton(
         icon: const Icon(Icons.chevron_left, color: Colors.white, size: 28),
@@ -43,10 +43,8 @@ class PerfilPage extends StatelessWidget {
       actions: [
         IconButton(
           onPressed: () {
-                  Navigator.push(context,
-                       MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-               },
+            controller.logOutUser(context);
+          },
           icon: const Icon(Icons.logout_rounded, color: Colors.white, size: 40),
           tooltip: "Ver perfil",
         ),

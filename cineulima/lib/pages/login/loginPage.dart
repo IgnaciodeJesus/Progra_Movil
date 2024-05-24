@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../Widgets/AppBar.dart';
+import '../home/home_page.dart';
 import './loginController.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   LoginController control = Get.put(LoginController());
+
+  @override
+  void initState() {
+    super.initState();
+    checkLogin();
+  }
+
+  Future<void> checkLogin() async {
+    bool isLoggedIn = await control.checkLoginStatus(context);
+    if (isLoggedIn) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    }
+  }
 
   Widget _form(BuildContext context, bool isKeyBoardOpen) {
     return Container(
@@ -85,7 +103,6 @@ class LoginPage extends StatelessWidget {
               width: double.infinity, // Ocupar todo el ancho disponible
               child: TextButton(
                 onPressed: () {
-                  // Función que se ejecuta cuando se presiona el botón
                   control.login(context);
                 },
                 style: TextButton.styleFrom(
@@ -224,9 +241,6 @@ class LoginPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     final bool isKeyBoardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
-    print('1 +++++++++++++++++++++++++');
-    print(isKeyBoardOpen);
-    print('2 +++++++++++++++++++++++++');
     return Stack(children: [
       _background(context),
       _imageBackground(context, isKeyBoardOpen),

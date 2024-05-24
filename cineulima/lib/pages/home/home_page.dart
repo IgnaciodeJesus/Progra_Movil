@@ -2,7 +2,6 @@ import 'package:cineulima/Widgets/AppBar.dart';
 import 'package:cineulima/pages/carrousel/carrousel_page.dart';
 import 'package:cineulima/pages/cines/cines_page.dart';
 import 'package:cineulima/pages/movies/movies_page.dart';
-import 'package:cineulima/pages/Perfil/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'home_controller.dart';
@@ -11,21 +10,18 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../models/entities/Usuario.dart';
 
 class HomePage extends StatefulWidget {
-  final Usuario usuarioLogged;
-
   //Constructor
-  const HomePage({Key? key, required this.usuarioLogged}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState(user: usuarioLogged);
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   HomeController control = Get.put(HomeController());
   int _selectedIndex = 0;
-  final Usuario user;
 
-  _HomePageState({required this.user});
+  _HomePageState();
 
   static final List<Widget> _widgetOptions = <Widget>[
     CarrouselPage(),
