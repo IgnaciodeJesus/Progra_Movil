@@ -27,6 +27,12 @@ class SignUpController extends GetxController {
     correoController = TextEditingController();
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
+    nombre.value="";
+    apellido.value="";
+    dni.value="";
+    correo.value="";
+    password.value="";
+    confirmPassword.value="";
   }
 
   @override
@@ -37,6 +43,7 @@ class SignUpController extends GetxController {
     correoController.dispose();
     passwordController.dispose();
     confirmPasswordController.dispose();
+
     super.onClose();
   }
 

@@ -13,12 +13,15 @@ class PasswordRecoveryController extends GetxController {
     super.onInit();
     dniController = TextEditingController();
     correoController = TextEditingController();
+    dni.value = "";
+    correo.value = "";
   }
 
   @override
   void onClose() {
     dniController.dispose();
     correoController.dispose();
+
     super.onClose();
   }
 

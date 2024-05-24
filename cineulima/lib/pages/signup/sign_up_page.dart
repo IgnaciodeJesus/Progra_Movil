@@ -10,6 +10,7 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    control.onInit();
     return KeyboardVisibilityProvider(
       child: Scaffold(
         appBar: buildAppBar('', context, false, false),
