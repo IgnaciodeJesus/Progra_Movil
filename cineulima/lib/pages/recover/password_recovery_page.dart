@@ -9,7 +9,6 @@ class PasswordRecoveryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    control.onInit();
     return Scaffold(
       appBar: buildAppBar('', context, false, true),
       body: SingleChildScrollView(

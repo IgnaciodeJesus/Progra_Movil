@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../configs/constants.dart';
+import '../../models/entities/Usuario.dart';
 
 class PasswordRecoveryController extends GetxController {
   late TextEditingController dniController;
@@ -35,21 +37,39 @@ class PasswordRecoveryController extends GetxController {
       return;
     }
 
-    // Aquí puedes implementar la lógica para recuperar la contraseña
-    // Por ejemplo, enviar un correo electrónico con un enlace para restablecer la contraseña
-    // Limpiar los campos de texto después de recuperar la contraseña
-    dniController.clear();
-    correoController.clear();
+    // Verificar si el DNI y el correo están registrados
+    bool usuarioEncontrado = false;
 
-    Get.defaultDialog(
-      title: "Recuperar Contraseña",
-      middleText:
-          "Un correo electrónico de restablecimiento de contraseña ha sido enviado a ${correo.value}. Por favor, revisa tu bandeja de entrada y sigue las instrucciones.",
-      textConfirm: "Aceptar",
-      onConfirm: () {
-        Get.back(); // Cerrar el diálogo
-        Get.toNamed('/login'); // Navegar a la página de inicio de sesión
-      },
-    );
+    for (var usuario in USUARIOS) {
+      if (usuario.dni == dni.value && usuario.correo == correo.value) {
+        usuarioEncontrado = true;
+        break;
+      }
+    }
+
+    if (usuarioEncontrado) {
+      // Limpiar los campos de texto después de recuperar la contraseña
+      dniController.clear();
+      correoController.clear();
+
+      Get.defaultDialog(
+        title: "Recuperar Contraseña",
+        middleText:
+            "Un correo electrónico de restablecimiento de contraseña ha sido enviado a ${correo.value}. Por favor, revisa tu bandeja de entrada y sigue las instrucciones.",
+        textConfirm: "Aceptar",
+        onConfirm: () {
+          Get.back(); // Cerrar el diálogo
+          Get.toNamed('/login'); // Navegar a la página de inicio de sesión
+        },
+      );
+    } else {
+      Get.snackbar(
+        'Error',
+        'No se encontró ningún usuario con el DNI y correo electrónico proporcionados.',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
 }
