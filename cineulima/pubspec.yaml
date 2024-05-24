@@ -45,10 +45,14 @@ dependencies:
   youtube_player_flutter: ^9.0.1
   intl: ^0.17.0
   http: ^1.1.2
-  image_picker: ^0.8.5
+  image_picker: ^0.8.5+3
   flutter_markdown: ^0.6.10
   flutter_keyboard_visibility: ^6.0.0
   shared_preferences: ^2.2.3
+  qr_flutter: ^4.0.0
+  share_plus: ^4.0.5
+  path_provider: ^2.0.10
+
 
 dev_dependencies:
   flutter_test:
@@ -106,3 +110,18 @@ flutter:
     - assets/images/
     - assets/svg/
     - assets/data/users.json
+    - assets/images/seat_selected.png
+    - assets/images/seat_not_selected.png
+    - assets/images/seat_occupied.png
+    - assets/images/cinema_screen.png
+    - assets/images/cinema_screen_reversed.png
+    - assets/images/candy_bar.webp
+    - assets/images/candy_combo.webp
+    - assets/images/combo_combo.webp
+    - assets/images/nachos.webp
+    - assets/images/popcorn_combo.webp
+    - assets/images/regular_combo.webp
+    - assets/images/salty_popcorn.webp
+    - assets/images/sweet_popcorn.webp
+    - assets/images/soda.webp
+    - assets/images/popcorn.png
