@@ -1,3 +1,4 @@
+import 'package:cineulima/Widgets/AppBar.dart';
 import 'package:flutter/material.dart';
 import 'seat_selection_screen.dart'; // Import the SeatSelectionScreen widget
 import 'payment_confirmation_screen.dart'; // Make sure to create and import this widget
@@ -48,7 +49,7 @@ class _CandySalesScreenState extends State<CandySalesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Candy Sales")),
+      appBar: buildAppBar('Confitería', context, false, true),
       body: SingleChildScrollView( // Adds scrolling capability to the layout
         child: Column(
           children: <Widget>[
@@ -92,15 +93,15 @@ class _CandySalesScreenState extends State<CandySalesScreen> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Candy Total: \$${candyTotal.toStringAsFixed(2)}", style: TextStyle(fontSize: 20)),
+              child: Text("Total Confiteria: \$${candyTotal.toStringAsFixed(2)}", style: TextStyle(fontSize: 20)),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Seat Total: \$${widget.seatTotal.toStringAsFixed(2)}", style: TextStyle(fontSize: 20)),
+              child: Text("Total Asientos: \$${widget.seatTotal.toStringAsFixed(2)}", style: TextStyle(fontSize: 20)),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Grand Total: \$${grandTotal.toStringAsFixed(2)}", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              child: Text("Total: \$${grandTotal.toStringAsFixed(2)}", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             ),
             ElevatedButton(
               onPressed: () {
@@ -109,7 +110,7 @@ class _CandySalesScreenState extends State<CandySalesScreen> {
                   MaterialPageRoute(builder: (context) => PaymentScreen()), // Assuming PaymentScreen is your payment form screen
                 );
               },
-              child: Text('Proceed to Payment'),
+              child: Text('Proceder a pago'),
             ),
           ],
         ),

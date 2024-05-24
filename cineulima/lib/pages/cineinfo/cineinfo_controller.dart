@@ -70,6 +70,7 @@ class CineInfoController extends GetxController {
         'pelicula': pelicula.titulo,
         'imagenUrl': pelicula.imagenUrl,
         'funciones': funcionesPelicula.map((funcion) => {
+          "funcion": funcion,
           'horario': DateFormat('HH:mm').format(funcion.fechahora),
         }).toList(),
       });

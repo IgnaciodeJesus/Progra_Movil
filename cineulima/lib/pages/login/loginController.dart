@@ -13,7 +13,7 @@ import '../signup/sign_up_page.dart';
 class LoginController extends GetxController {
   TextEditingController userController = TextEditingController();
   TextEditingController passController = TextEditingController();
-  RxString message = 'primer mensaje'.obs;
+  RxString message = ''.obs;
   var messageColor = Colors.white.obs;
 
   Future<bool> checkLoginStatus(BuildContext context) async {

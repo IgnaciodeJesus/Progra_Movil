@@ -2,6 +2,7 @@ import 'package:cineulima/Widgets/AppBar.dart';
 import 'package:cineulima/pages/movies/movies_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../models/entities/Funcion.dart';
 import '../../models/entities/Pelicula.dart';
 import './movinfo_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -218,7 +219,7 @@ class MovinfoPage extends StatelessWidget {
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => SeatSelectionScreen()),
+                                  MaterialPageRoute(builder: (context) => SeatSelectionScreen(funcion: funcion["funcion"])),
                                 );
                               },
                               child:

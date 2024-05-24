@@ -1,12 +1,12 @@
+import 'package:cineulima/Widgets/AppBar.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:ui' as ui;
 import 'dart:typed_data';
 import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'dart:io';
 import 'package:share_plus/share_plus.dart';  // Correct import
-import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;  // For file path handling
 
 class QRCodeScreen extends StatefulWidget {
@@ -42,24 +42,16 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Your QR Code"),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.share),
-            onPressed: _shareQr,
-          ),
-        ],
-      ),
+      appBar: buildAppBar('Confirmación de compra', context, false, false),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("Scan this QR code to confirm your purchase:", style: TextStyle(fontSize: 16)),
+            Text("Este es el código QR de tu compra", style: TextStyle(fontSize: 16)),
             SizedBox(height: 20),
             RepaintBoundary(
               key: _globalKey,
-              child: QrImage(
+              child: QrImageView(
                 data: widget.purchaseDetails,
                 version: QrVersions.auto,
                 size: 200.0,
