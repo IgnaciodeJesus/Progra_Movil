@@ -6,6 +6,7 @@ import '../../models/entities/Pelicula.dart';
 import './movinfo_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../seats/seat_selection_screen.dart';
 
 class MovinfoPage extends StatelessWidget {
   final MovinfoController controller = Get.put(MovinfoController());
@@ -211,7 +212,18 @@ class MovinfoPage extends StatelessWidget {
                       ),
                       Row(
                         children: (funcion['funciones'] as List<Map<String, dynamic>>)
-                            .map((funcion) => Container(
+                            .map((funcion) => 
+                            
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SeatSelectionScreen()),
+                                );
+                              },
+                              child:
+                            
+                            Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(4),
@@ -224,6 +236,8 @@ class MovinfoPage extends StatelessWidget {
                             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF000C78)),
                           ),
                         ))
+                        )
+
                             .toList(),
                       )
                     ]
