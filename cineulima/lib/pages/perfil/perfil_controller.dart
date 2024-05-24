@@ -7,12 +7,15 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../configs/constants.dart';
+import '../../models/entities/Entrada.dart';
+import '../../models/entities/Funcion.dart';
 import '../../models/entities/Usuario.dart';
 import '../../models/entities/Pelicula.dart';
 import '../../models/entities/Sala.dart';
 
 class PerfilController extends GetxController {
   Rx<Usuario> usuario = Rx<Usuario>(Usuario.empty());
+  Rx<List<Entrada>> entradas = Rx<List<Entrada>>([]);
 
   void getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -20,25 +23,39 @@ class PerfilController extends GetxController {
     print(loggedUser ?? 'No hay usuario logueado');
     if (loggedUser != null) {
       usuario.value = Usuario.fromJson(jsonDecode(loggedUser));
-      print(usuario);
     }
   }
 
-  Pelicula? getPeliculaPorId(int id) =>
-      PELICULAS.firstWhereOrNull((pelicula) => pelicula.id == id);
-
-  Sala? getSalaPorId(int id) => SALAS.firstWhereOrNull((sala) => sala.id == id);
-
-  String getPeliculaImagenUrl(int id) {
-    return getPeliculaPorId(id)?.imagenUrl ?? "https://via.placeholder.com/150";
+  void getEntradas() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? loggedUser = prefs.getString('logged_user');
+    usuario.value = Usuario.fromJson(jsonDecode(loggedUser!));
+    entradas.value = List<Entrada>.from(
+        ENTRADAS.where((entrada) => entrada.usuarioId == usuario.value.id));
   }
 
-  String getPeliculaNombre(int id) {
-    return getPeliculaPorId(id)?.titulo ?? "Película no encontrada";
+  Funcion getFuncion(Entrada entrada) {
+    return FUNCIONES.firstWhere((f) => f.id == entrada.funcionId);
   }
 
-  String getSalaNombre(int id) {
-    return getSalaPorId(id)?.nombre ?? "Sala no encontrada";
+  Pelicula getPelicula(Entrada entrada) {
+    return PELICULAS.firstWhere((p) => p.id == getFuncion(entrada).peliculaId);
+  }
+
+  Sala getSala(Entrada entrada) {
+    return SALAS.firstWhere((s) => s.id == getFuncion(entrada).salaId);
+  }
+
+  String getPeliculaImagenUrl(Entrada entrada) {
+    return getPelicula(entrada)?.imagenUrl ?? "https://via.placeholder.com/150";
+  }
+
+  String getPeliculaNombre(Entrada entrada) {
+    return getPelicula(entrada)?.titulo ?? "Película no encontrada";
+  }
+
+  String getSalaNombre(Entrada entrada) {
+    return getSala(entrada)?.nombre ?? "Sala no encontrada";
   }
 
   final ImagePicker _picker = ImagePicker();
@@ -64,5 +81,6 @@ class PerfilController extends GetxController {
   void onInit() {
     super.onInit();
     getUser();
+    getEntradas();
   }
 }

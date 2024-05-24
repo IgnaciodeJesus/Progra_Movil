@@ -10,7 +10,7 @@ import 'package:intl/date_symbol_data_local.dart';
 class MovinfoController extends GetxController {
   late YoutubePlayerController _controller;
 
-  void init(String trailerUrl) {
+  void init(String trailerUrl) async {
     initializeDateFormatting('es');
     String videoId = YoutubePlayer.convertUrlToId(trailerUrl) ?? '';
     _controller = YoutubePlayerController(
@@ -26,14 +26,14 @@ class MovinfoController extends GetxController {
   void onClose() {
     _controller.dispose();
     super.onClose();
-
   }
 
   YoutubePlayerController get controller => _controller;
 
   List<Map<String, dynamic>> getFechasFiltradas(Pelicula pelicula) {
-    List<Funcion> funcionesFiltradas = FUNCIONES.where((funcion) =>
-    funcion.peliculaId == pelicula.id).toList();
+    List<Funcion> funcionesFiltradas = FUNCIONES
+        .where((funcion) => funcion.peliculaId == pelicula.id)
+        .toList();
 
     // Agrupar las funciones por fecha (día)
     Map<DateTime, List<Funcion>> funcionesPorFecha = {};
@@ -50,7 +50,7 @@ class MovinfoController extends GetxController {
     List<Map<String, dynamic>> fechasFormateadas = [];
     funcionesPorFecha.forEach((fecha, funcionesFecha) {
       String diaSemana = DateFormat('EEEE', 'es').format(fecha);
-      diaSemana =  diaSemana[0].toUpperCase() + diaSemana.substring(1);
+      diaSemana = diaSemana[0].toUpperCase() + diaSemana.substring(1);
       String mesString = DateFormat('MMMM', 'es').format(fecha);
       mesString = mesString[0].toUpperCase() + mesString.substring(1);
       fechasFormateadas.add({
@@ -64,12 +64,15 @@ class MovinfoController extends GetxController {
     return fechasFormateadas;
   }
 
-  List<Map<String, dynamic>> getFuncionesPorFecha(Pelicula pelicula, DateTime fecha) {
-    List<Funcion> funcionesFiltradas = FUNCIONES.where((funcion) =>
-    funcion.peliculaId == pelicula.id &&
-        DateTime(funcion.fechahora.year, funcion.fechahora.month,
-            funcion.fechahora.day) == fecha
-    ).toList();
+  List<Map<String, dynamic>> getFuncionesPorFecha(
+      Pelicula pelicula, DateTime fecha) {
+    List<Funcion> funcionesFiltradas = FUNCIONES
+        .where((funcion) =>
+            funcion.peliculaId == pelicula.id &&
+            DateTime(funcion.fechahora.year, funcion.fechahora.month,
+                    funcion.fechahora.day) ==
+                fecha)
+        .toList();
 
     funcionesFiltradas.sort((a, b) => a.fechahora.compareTo(b.fechahora));
 
@@ -86,11 +89,12 @@ class MovinfoController extends GetxController {
       Sala sala = SALAS.firstWhere((sala) => sala.id == salaId);
       funcionesFormateadas.add({
         'sala': sala.nombre,
-        'funciones': funcionesSala.map((funcion) =>
-        {
-          'funcion': funcion,
-          'horario': DateFormat('HH:mm').format(funcion.fechahora),
-        }).toList(),
+        'funciones': funcionesSala
+            .map((funcion) => {
+                  'funcion': funcion,
+                  'horario': DateFormat('HH:mm').format(funcion.fechahora),
+                })
+            .toList(),
       });
     });
 
@@ -98,5 +102,6 @@ class MovinfoController extends GetxController {
   }
 
   Rx<DateTime> selectedDate = DateTime(2024, 4, 23, 15, 30, 0).obs;
-  RxList<Map<String, dynamic>> funcionesFiltradas = <Map<String, dynamic>>[].obs;
+  RxList<Map<String, dynamic>> funcionesFiltradas =
+      <Map<String, dynamic>>[].obs;
 }

@@ -7,15 +7,13 @@ import '../../models/entities/Funcion.dart';
 import '../../models/entities/Sala.dart';
 
 class CineInfoController extends GetxController {
-
-  void init(){
+  void init() async {
     initializeDateFormatting('es');
   }
 
-
   List<Map<String, dynamic>> getFechasFiltradas(Sala sala) {
-    List<Funcion> funcionesFiltradas = FUNCIONES.where((funcion) =>
-    funcion.salaId == sala.id).toList();
+    List<Funcion> funcionesFiltradas =
+        FUNCIONES.where((funcion) => funcion.salaId == sala.id).toList();
 
     // Agrupar las funciones por fecha (día)
     Map<DateTime, List<Funcion>> funcionesPorFecha = {};
@@ -47,11 +45,13 @@ class CineInfoController extends GetxController {
   }
 
   List<Map<String, dynamic>> getFuncionesPorFecha(Sala sala, DateTime fecha) {
-    List<Funcion> funcionesFiltradas = FUNCIONES.where((funcion) =>
-    funcion.salaId == sala.id &&
-        DateTime(funcion.fechahora.year, funcion.fechahora.month,
-            funcion.fechahora.day) == fecha
-    ).toList();
+    List<Funcion> funcionesFiltradas = FUNCIONES
+        .where((funcion) =>
+            funcion.salaId == sala.id &&
+            DateTime(funcion.fechahora.year, funcion.fechahora.month,
+                    funcion.fechahora.day) ==
+                fecha)
+        .toList();
 
     funcionesFiltradas.sort((a, b) => a.fechahora.compareTo(b.fechahora));
 
@@ -69,15 +69,19 @@ class CineInfoController extends GetxController {
       funcionesFormateadas.add({
         'pelicula': pelicula.titulo,
         'imagenUrl': pelicula.imagenUrl,
-        'funciones': funcionesPelicula.map((funcion) => {
-          "funcion": funcion,
-          'horario': DateFormat('HH:mm').format(funcion.fechahora),
-        }).toList(),
+        'funciones': funcionesPelicula
+            .map((funcion) => {
+                  "funcion": funcion,
+                  'horario': DateFormat('HH:mm').format(funcion.fechahora),
+                })
+            .toList(),
       });
     });
 
     return funcionesFormateadas;
   }
+
   Rx<DateTime> selectedDate = DateTime(2024, 4, 23, 15, 30, 0).obs;
-  RxList<Map<String, dynamic>> funcionesFiltradas = <Map<String, dynamic>>[].obs;
+  RxList<Map<String, dynamic>> funcionesFiltradas =
+      <Map<String, dynamic>>[].obs;
 }

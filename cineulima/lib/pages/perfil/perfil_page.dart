@@ -1,4 +1,5 @@
 import 'package:cineulima/pages/Perfil/perfil_controller.dart';
+import 'package:cineulima/pages/seats/qr_code_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -98,50 +99,62 @@ class PerfilPage extends StatelessWidget {
           SizedBox(
             height: 5,
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: FUNCIONES.length,
-            itemBuilder: (context, index) {
-              final funcion = FUNCIONES[index];
-              return Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 0.5),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                margin: EdgeInsets.all(8),
-                child: ListTile(
-                  leading: Image.network(
-                      controller.getPeliculaImagenUrl(funcion.peliculaId),
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topCenter),
-                  title: Text(
-                      "${controller.getPeliculaNombre(funcion.peliculaId)}",
-                      style: GoogleFonts.openSans(
-                          textStyle:
-                              const TextStyle(fontWeight: FontWeight.w900))),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${funcion.fechahora.toIso8601String().substring(0, 10)} | ${funcion.fechahora.toIso8601String().substring(11, 16)}",
-                        style: GoogleFonts.openSans(
-                            textStyle: TextStyle(
-                                color: Colors.black.withOpacity(0.8))),
-                      ),
-                      SizedBox(height: 2),
-                      Text("Sala: ${controller.getSalaNombre(funcion.salaId)}",
+          Obx(
+            () => ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: controller.entradas.value.length,
+              itemBuilder: (context, index) {
+                final entrada = controller.entradas.value[index];
+                return GestureDetector(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 0.5),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    margin: EdgeInsets.all(8),
+                    child: ListTile(
+                      leading: Image.network(
+                          controller.getPeliculaImagenUrl(entrada),
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                          alignment: Alignment.topCenter),
+                      title: Text("${controller.getPeliculaNombre(entrada)}",
                           style: GoogleFonts.openSans(
                               textStyle: const TextStyle(
                                   fontWeight: FontWeight.w900))),
-                    ],
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${controller.getFuncion(entrada).fechahora.toIso8601String().substring(0, 10)} | ${controller.getFuncion(entrada).fechahora.toIso8601String().substring(11, 16)}",
+                            style: GoogleFonts.openSans(
+                                textStyle: TextStyle(
+                                    color: Colors.black.withOpacity(0.8))),
+                          ),
+                          SizedBox(height: 2),
+                          Text("Sala: ${controller.getSalaNombre(entrada)}",
+                              style: GoogleFonts.openSans(
+                                  textStyle: const TextStyle(
+                                      fontWeight: FontWeight.w900))),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              );
-            },
-          ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => QRCodeScreen(
+                                  entrada: entrada,
+                                  fromProfilePage: true,
+                                )));
+                  },
+                );
+              },
+            ),
+          )
         ],
       ),
     );

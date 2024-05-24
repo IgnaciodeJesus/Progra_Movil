@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../models/entities/Entrada.dart';
 import '../models/entities/Funcion.dart';
 import '../models/entities/Pelicula.dart';
 import '../models/entities/Usuario.dart';
@@ -263,3 +264,21 @@ final List<Funcion> FUNCIONES = [
       salaId: 1,
       fechahora: DateTime(2024, 4, 23, 15, 1, 0)),
 ];
+
+RxList<Entrada> ENTRADAS = <Entrada>[
+  Entrada(
+    id: 'ANWNJQKM',
+    usuarioId: 1,
+    funcionId: 1,
+  ),
+  Entrada(
+    id: 'CCCCCCKM',
+    usuarioId: 2,
+    funcionId: 12,
+  ),
+  Entrada(
+    id: 'DDDDDDKM',
+    usuarioId: 1,
+    funcionId: 6,
+  ),
+].obs;
