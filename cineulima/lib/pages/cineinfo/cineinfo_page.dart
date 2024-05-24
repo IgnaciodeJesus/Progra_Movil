@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../models/entities/Funcion.dart';
 import '../../models/entities/Sala.dart';
+import '../seats/seat_selection_screen.dart';
 import 'cineinfo_controller.dart'; // Asegúrate de que este importe esté correcto
 import 'package:google_fonts/google_fonts.dart';
 
@@ -160,7 +162,7 @@ class CineInfoPage extends StatelessWidget {
                                       children: List.generate(
                                         funcion['funciones'].length,
                                             (index) {
-                                          return buildContainer(funcion['funciones'][index]);
+                                          return buildHorario(funcion['funciones'][index], context);
                                         },
                                       )
                                       ),
@@ -181,21 +183,28 @@ class CineInfoPage extends StatelessWidget {
     );
   }
 
-  Container buildContainer(Map<String, dynamic> funcion) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(color: const Color(0xFF000C78)),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      margin: const EdgeInsets.only(top: 5, bottom: 5, right: 10),
-      child: Text(
-        '${funcion['horario']}',
-        style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF000C78)),
+  GestureDetector buildHorario(Map<String, dynamic> funcion, BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>SeatSelectionScreen(funcion: funcion["funcion"])));
+        },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: const Color(0xFF000C78)),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        margin: const EdgeInsets.only(top: 5, bottom: 5, right: 10),
+        child: Text(
+          '${funcion['horario']}',
+          style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF000C78)),
+        ),
       ),
     );
   }

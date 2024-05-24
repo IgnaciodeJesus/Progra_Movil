@@ -88,6 +88,7 @@ class MovinfoController extends GetxController {
         'sala': sala.nombre,
         'funciones': funcionesSala.map((funcion) =>
         {
+          'funcion': funcion,
           'horario': DateFormat('HH:mm').format(funcion.fechahora),
         }).toList(),
       });

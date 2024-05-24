@@ -1,3 +1,4 @@
+import 'package:cineulima/Widgets/AppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // For input formatting
 import 'qr_code_screen.dart'; // Import this if you have a separate screen for displaying the QR code
@@ -27,7 +28,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Enter Payment Details")),
+      appBar: buildAppBar('Pago', context, false, true),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Form(
@@ -38,7 +39,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               TextFormField(
                 controller: _cardNumberController,
                 decoration: InputDecoration(
-                  labelText: 'Card Number',
+                  labelText: 'Número de tarjeta',
                   hintText: '1234 5678 9012 3456',
                 ),
                 keyboardType: TextInputType.number,
@@ -56,7 +57,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               TextFormField(
                 controller: _expiryDateController,
                 decoration: InputDecoration(
-                  labelText: 'Expiry Date',
+                  labelText: 'Fecha de expiración',
                   hintText: 'MM/YY',
                 ),
                 keyboardType: TextInputType.datetime,
@@ -93,7 +94,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               TextFormField(
                 controller: _cardHolderNameController,
                 decoration: InputDecoration(
-                  labelText: 'Cardholder Name',
+                  labelText: 'Nombre en tarjeta',
                   hintText: 'John Doe',
                 ),
                 validator: (value) {
@@ -107,7 +108,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: ElevatedButton(
                   onPressed: _submitForm,
-                  child: Text('Confirm Payment'),
+                  child: Text('Confirmar Pago'),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size.fromHeight(50), // make height 50
                   ),
