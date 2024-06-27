@@ -9,11 +9,12 @@ import '../seats/seat_selection_screen.dart';
 
 class MovinfoPage extends StatelessWidget {
   final MovinfoController controller = Get.put(MovinfoController());
-  final Pelicula p;
+  final int pId;
 
-  MovinfoPage({Key? key, required this.p}) {
-    controller.init(p.trailerUrl);
+  MovinfoPage({Key? key, required this.pId}) {
+    //controller.init(p.trailerUrl);
   }
+  /*
   Widget _buildBody(BuildContext context) {
     var fechasFiltradas = controller.getFechasFiltradas(p);
     if (fechasFiltradas.length > 0) {
@@ -285,13 +286,13 @@ class MovinfoPage extends StatelessWidget {
       ],
     ));
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: buildAppBar('Películas', context, false, true),
-      body: _buildBody(context),
-    );
+        resizeToAvoidBottomInset: false,
+        appBar: buildAppBar('Películas', context, false, true),
+        body: null //_buildBody(context),
+        );
   }
 }

@@ -30,32 +30,33 @@ class MoviesPage extends StatelessWidget {
         ),
         Expanded(
           child: Obx(() => GridView.count(
-            crossAxisCount: 2,
-            shrinkWrap: true,
-            childAspectRatio: context.isPortrait
-                ? itemWidth / itemHeight
-                : (itemWidth / 2) / (itemHeight),
-            children: control.filteredPeliculas.map((p) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MovinfoPage(p: p)),
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                childAspectRatio: context.isPortrait
+                    ? itemWidth / itemHeight
+                    : (itemWidth / 2) / (itemHeight),
+                children: control.filteredPeliculas.map((p) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MovinfoPage(pId: p.id)),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                      ),
+                      child: Image.network(
+                        p.imagenUrl,
+                        fit: BoxFit.cover,
+                        alignment: Alignment.topCenter,
+                      ),
+                    ),
                   );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                  ),
-                  child: Image.network(
-                    p.imagenUrl,
-                    fit: BoxFit.cover,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-              );
-            }).toList(),
-          )),
+                }).toList(),
+              )),
         )
       ],
     );
@@ -63,6 +64,7 @@ class MoviesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    control.fetchPeliculas();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: null,
