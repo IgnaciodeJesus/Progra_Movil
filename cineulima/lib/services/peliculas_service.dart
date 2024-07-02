@@ -26,4 +26,29 @@ class PeliculasService {
     }
     return homeResults;
   }
+
+  Future<List<PeliculasInfoResponse>> fetchPeliculasPage(int id) async {
+    String url = "${BASE_URL}peliculas";
+    <PeliculasInfoResponse> peliculaResults = "";
+
+    var queryParams = {
+      'id': id.toString(), // Aquí se convierte el id a String
+    };
+    var uri = Uri.parse(url).replace(queryParameters: queryParams);
+    try {
+      var response = await http.get(uri);
+      if (response.statusCode == 200) {
+        var decodedBody = json.decode(response.body);
+        decodedBody.forEach((element) {
+          peliculaResults.add(PeliculasInfoResponse.fromJson(element));
+        });
+      } else if (response.statusCode == 404) {
+        throw Exception('No se encontraron resultados');
+      }
+    } catch (e, stackTrace) {
+      print('Error no esperado: $e');
+      print(stackTrace);
+    }
+    return peliculaResults;
+  }
 }

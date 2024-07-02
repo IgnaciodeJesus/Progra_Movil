@@ -6,7 +6,7 @@ import '../models/entities/Pelicula.dart';
 import '../models/entities/Usuario.dart';
 import '../models/entities/Sala.dart';
 
-const BASE_URL = 'http://192.168.1.83:4567/';
+const BASE_URL = 'http://192.168.19.73:4567';
 
 final List<Pelicula> PELICULAS = [];
 final List<Sala> SALAS = [
