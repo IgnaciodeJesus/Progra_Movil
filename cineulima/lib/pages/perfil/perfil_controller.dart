@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:cineulima/pages/login/LoginPage.dart';
+import 'package:cineulima/pages/login/loginPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

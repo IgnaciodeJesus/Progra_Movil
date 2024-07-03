@@ -41,8 +41,6 @@ class PeliculasService {
       if (response.statusCode == 200) {
         var rpt = json.decode(response.body);
         peliculaResults = PeliculasInfoResponse.fromJson(rpt);
-        print('aqui imprimeee');
-        print(peliculaResults.toJson());
       } else if (response.statusCode == 404) {
         throw Exception('No se encontraron resultados');
       }

@@ -2,7 +2,7 @@ import 'package:cineulima/pages/recover/password_recovery_page.dart';
 import 'package:cineulima/pages/signup/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cineulima/pages/login/LoginPage.dart'; // Importa la página de inicio de sesión
+import 'package:cineulima/pages/login/loginPage.dart'; // Importa la página de inicio de sesión
 
 void main() {
   runApp(MyApp());

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../pages/Perfil/perfil_page.dart';
+import '../pages/perfil/perfil_page.dart';
 
 AppBar buildAppBar(String title, context, bool showProfileButton, bool showBackButton) {
   return AppBar(

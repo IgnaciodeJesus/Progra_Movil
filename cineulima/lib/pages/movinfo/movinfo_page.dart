@@ -55,7 +55,7 @@ class MovinfoPage extends StatelessWidget {
               child: Container(
                   padding: EdgeInsets.all(8),
                   child: Column(children: [
-                    Text(p.titulo,
+                    Text(p.peliculadata.titulo,
                         style: GoogleFonts.inter(
                             textStyle: const TextStyle(
                           color: Colors.white,
@@ -89,7 +89,7 @@ class MovinfoPage extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                p.sinopsis,
+                p.peliculadata.sinopsis,
                 style: TextStyle(fontSize: 12.5),
               ),
               SizedBox(height: 20),
@@ -109,7 +109,7 @@ class MovinfoPage extends StatelessWidget {
                 child: ListView.builder(
                   padding: EdgeInsets.only(left: 20),
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: (p.actores.length / 2)
+                  itemCount: (p.peliculadata.actores.length / 2)
                       .ceil(), // Calcular la cantidad de filas
                   itemBuilder: (context, index) {
                     return Padding(
@@ -118,15 +118,15 @@ class MovinfoPage extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              '• ${p.actores[index * 2]}',
+                              '• ${p.peliculadata.actores[index * 2]}',
                               style: TextStyle(fontSize: 12.5),
                             ),
                           ),
                           SizedBox(width: 8), // Espacio entre los actores
                           Expanded(
-                            child: (index * 2 + 1 < p.actores.length)
+                            child: (index * 2 + 1 < p.peliculadata.actores.length)
                                 ? Text(
-                                    '• ${p.actores[index * 2 + 1]}',
+                                    '• ${p.peliculadata.actores[index * 2 + 1]}',
                                     style: TextStyle(fontSize: 12.5),
                                   )
                                 : SizedBox(), // En caso de que el número de actores sea impar
@@ -290,7 +290,7 @@ class MovinfoPage extends StatelessWidget {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: buildAppBar('Películas', context, false, true),
-        body: null //_buildBody(context),
+        body: _buildBody(context),
         );
   }
 }

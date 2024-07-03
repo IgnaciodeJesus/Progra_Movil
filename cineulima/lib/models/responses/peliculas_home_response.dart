@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:intl/intl.dart';
 import '../../configs/constants.dart';
+import '../entities/Pelicula.dart';
 
 List<PeliculasHomeResponse> peliculasHomeResponseFromJson(String str) =>
     List<PeliculasHomeResponse>.from(
@@ -28,69 +28,35 @@ class PeliculasHomeResponse {
 }
 
 class PeliculasInfoResponse {
-  int id;
-  String titulo;
-  String sinopsis;
-  String imagenUrl;
-  String trailerUrl;
-  List<String> actores;
-  List<String> generos;
+  Pelicula peliculadata;
   List<FuncionesInfoResponse> funciones;
 
   PeliculasInfoResponse({
-    required this.id,
-    required this.titulo,
-    required this.imagenUrl,
-    required this.actores,
-    required this.generos,
+    required this.peliculadata,
     required this.funciones,
-    required this.sinopsis,
-    required this.trailerUrl,
   });
 
   factory PeliculasInfoResponse.fromJson(Map<String, dynamic> json) {
     return PeliculasInfoResponse(
-      id: json['id'] as int? ?? 0,
-      titulo: json['titulo'] as String? ?? '',
-      sinopsis: json['sinopsis'] as String? ?? '',
-      imagenUrl: json['imagen_url'] as String? ?? '',
-      trailerUrl: json['trailer_url'] as String? ?? '',
-      actores: List<String>.from(json['actores']?? []),
-      generos: List<String>.from(json['generos']?? []),
+      peliculadata: Pelicula.fromJson(json),
       funciones: (json['funciones'] as List<dynamic>?)
           ?.map((item) => FuncionesInfoResponse.fromJson(item as Map<String, dynamic>))
           .toList()?? [],
     );
   }
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "titulo": titulo,
-    "sinopsis": sinopsis,
-    "imagen_url": imagenUrl,
-    "trailer_url": trailerUrl,
-    "actores": actores,
-    "generos": generos,
-    "funciones": funciones,
-  };
 
   static PeliculasInfoResponse empty() {
     return PeliculasInfoResponse(
-      id: 0,
-      titulo: '',
-      sinopsis: '',
-      imagenUrl: '',
-      trailerUrl: '',
-      actores: [],
-      generos: [],
+      peliculadata: Pelicula.empty(),
       funciones: [],
     );
   }
   String generosToString() {
     String generosString = "";
-    for (int i = 0; i < generos.length; i++) {
-      generosString += generos[i];
-      if (i < generos.length - 1) {
+    for (int i = 0; i < peliculadata.generos.length; i++) {
+      generosString += peliculadata.generos[i];
+      if (i < peliculadata.generos.length - 1) {
         generosString += " - ";
       }
     }
@@ -111,16 +77,16 @@ class FuncionesInfoResponse {
 
   factory FuncionesInfoResponse.fromJson(Map<String, dynamic> json) {
     return FuncionesInfoResponse(
-      id: json["id"] as int? ?? 0,
-      nombre_sala: json['nombre_sala'] as String? ?? '',
-      fecha: DateFormat('dd/MM/yyyy HH:mm:ss').parse(json['fecha'] as String? ?? '')
+      id: json["id"],
+      nombre_sala: json['nombre_sala'] ,
+      fecha: DateTime.parse(json['time'])
     );
   }
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "nombre_sala": nombre_sala,
-    "fecha": fecha,
+    "time": fecha,
   };
 
   static FuncionesInfoResponse empty() {

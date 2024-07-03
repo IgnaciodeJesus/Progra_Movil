@@ -54,5 +54,17 @@ class Pelicula {
     return generosString;
   }
 
+  static Pelicula empty() {
+    return Pelicula(
+      id: 0,
+      titulo: "",
+      sinopsis: "",
+      imagenUrl: "",
+      trailerUrl: "",
+      actores: [],
+      generos: []
+    );
+  }
+
 }
 

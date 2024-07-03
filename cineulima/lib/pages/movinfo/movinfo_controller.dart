@@ -26,10 +26,10 @@ class MovinfoController extends GetxController {
 
   Future<void> fetchPeliculasInfo(int id) async {
     PeliculasInfoResponse? peliResponse = await peliculasService.fetchPeliculasPage(id);
-    if (peliResponse.id != 0) {
+    if (peliResponse.peliculadata.id != 0) {
       pelicula.value = peliResponse;
       print("se encontro gaaaa");
-      init(peliResponse.trailerUrl); // Initialize YouTube player with trailer URL
+      init(peliResponse.peliculadata.trailerUrl); // Initialize YouTube player with trailer URL
     } else {
       Fluttertoast.showToast(
           msg: "No se encontraron resultados",
@@ -39,11 +39,8 @@ class MovinfoController extends GetxController {
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0);
-      print("No se encontro");
     }
-    print(peliResponse.sinopsis);
-    print("ya fue ya xd");
-    print(pelicula.value.toJson());
+
   }
 
   void init(String trailerUrl) {

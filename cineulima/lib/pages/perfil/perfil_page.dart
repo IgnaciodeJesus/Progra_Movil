@@ -1,11 +1,11 @@
-import 'package:cineulima/pages/Perfil/perfil_controller.dart';
+import 'package:cineulima/pages/perfil/perfil_controller.dart';
 import 'package:cineulima/pages/seats/qr_code_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:io'; // Para usar FileImage
 import '../../configs/constants.dart';
-import 'package:cineulima/pages/login/LoginPage.dart';
+import 'package:cineulima/pages/login/loginPage.dart';
 
 class PerfilPage extends StatelessWidget {
   PerfilPage({Key? key}) : super(key: key);
