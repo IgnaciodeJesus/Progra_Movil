@@ -27,21 +27,22 @@ class PeliculasService {
     return homeResults;
   }
 
-  Future<List<PeliculasInfoResponse>> fetchPeliculasPage(int id) async {
+  Future<PeliculasInfoResponse> fetchPeliculasPage(int id) async {
     String url = "${BASE_URL}peliculas";
-    <PeliculasInfoResponse> peliculaResults = "";
+    PeliculasInfoResponse peliculaResults = PeliculasInfoResponse.empty();
 
     var queryParams = {
       'id': id.toString(), // Aquí se convierte el id a String
     };
     var uri = Uri.parse(url).replace(queryParameters: queryParams);
+    print(uri);
     try {
       var response = await http.get(uri);
       if (response.statusCode == 200) {
-        var decodedBody = json.decode(response.body);
-        decodedBody.forEach((element) {
-          peliculaResults.add(PeliculasInfoResponse.fromJson(element));
-        });
+        var rpt = json.decode(response.body);
+        peliculaResults = PeliculasInfoResponse.fromJson(rpt);
+        print('aqui imprimeee');
+        print(peliculaResults.toJson());
       } else if (response.statusCode == 404) {
         throw Exception('No se encontraron resultados');
       }
@@ -49,6 +50,7 @@ class PeliculasService {
       print('Error no esperado: $e');
       print(stackTrace);
     }
+    print('se imprime?');
     return peliculaResults;
   }
 }

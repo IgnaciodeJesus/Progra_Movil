@@ -12,16 +12,15 @@ class MovinfoPage extends StatelessWidget {
   final int pId;
 
   MovinfoPage({Key? key, required this.pId}) {
-    //controller.init(p.trailerUrl);
+    controller.fetchPeliculasInfo(pId);
   }
-  /*
   Widget _buildBody(BuildContext context) {
-    var fechasFiltradas = controller.getFechasFiltradas(p);
+    var p = controller.pelicula.value;
+    var fechasFiltradas = controller.getFechasFiltradas();
     if (fechasFiltradas.length > 0) {
       controller.selectedDate.value = fechasFiltradas[0]['value'];
     }
-    controller.funcionesFiltradas.value =
-        controller.getFuncionesPorFecha(p, controller.selectedDate.value);
+    controller.funcionesFiltradas.value = controller.getFuncionesPorFecha(controller.selectedDate.value);
     return SingleChildScrollView(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -166,9 +165,8 @@ class MovinfoPage extends StatelessWidget {
                         onTap: () {
                           controller.selectedDate.value = fecha['value'];
                           controller.funcionesFiltradas.value =
-                              controller.getFuncionesPorFecha(
-                                  p, controller.selectedDate.value);
-                        },
+                              controller.getFuncionesPorFecha(controller.selectedDate.value);
+                          },
                         child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Obx(() => Container(
@@ -286,7 +284,7 @@ class MovinfoPage extends StatelessWidget {
       ],
     ));
   }
-*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -16,7 +16,37 @@ class MovinfoController extends GetxController {
   Rx<PeliculasInfoResponse> pelicula = Rx<PeliculasInfoResponse>(PeliculasInfoResponse.empty());
   late YoutubePlayerController _controller;
 
-  void init(String trailerUrl) async {
+  @override
+  void onClose() {
+    _controller.dispose();
+    super.onClose();
+  }
+
+  YoutubePlayerController get controller => _controller;
+
+  Future<void> fetchPeliculasInfo(int id) async {
+    PeliculasInfoResponse? peliResponse = await peliculasService.fetchPeliculasPage(id);
+    if (peliResponse.id != 0) {
+      pelicula.value = peliResponse;
+      print("se encontro gaaaa");
+      init(peliResponse.trailerUrl); // Initialize YouTube player with trailer URL
+    } else {
+      Fluttertoast.showToast(
+          msg: "No se encontraron resultados",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      print("No se encontro");
+    }
+    print(peliResponse.sinopsis);
+    print("ya fue ya xd");
+    print(pelicula.value.toJson());
+  }
+
+  void init(String trailerUrl) {
     initializeDateFormatting('es');
     String videoId = YoutubePlayer.convertUrlToId(trailerUrl) ?? '';
     _controller = YoutubePlayerController(
@@ -28,36 +58,11 @@ class MovinfoController extends GetxController {
     );
   }
 
-  @override
-  void onClose() {
-    _controller.dispose();
-    super.onClose();
-  }
-
-  YoutubePlayerController get controller => _controller;
-
-  Future<void> fetchPeliculasInfo(int id) async {
-    PeliculasInfoResponse peliResponse =PeliculasInfoResponse.empty();
-    await peliculasService.fetchPeliculasPage(id);
-    if (peliResponse.id != 0) {
-      pelicula.value = peliResponse;
-    } else {
-      Fluttertoast.showToast(
-          msg: "No se encontraron resultados",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
-    }
-  }
-
   List<Map<String, dynamic>> getFechasFiltradas() {
-    funcionesFiltradas.value = pelicula.value.funciones;
+    List<FuncionesInfoResponse> funcionesFiltradas = pelicula.value.funciones;
     // Agrupar las funciones por fecha (día)
     Map<DateTime, List<FuncionesInfoResponse>> funcionesPorFecha = {};
-    funcionesFiltradas.value.forEach((funcion) {
+    funcionesFiltradas.forEach((funcion) {
       DateTime fecha = DateTime(funcion.fecha.year, funcion.fecha.month,
           funcion.fecha.day);
       if (!funcionesPorFecha.containsKey(fecha)) {
@@ -72,7 +77,7 @@ class MovinfoController extends GetxController {
       String diaSemana = DateFormat('EEEE', 'es').format(fecha);
       diaSemana = diaSemana[0].toUpperCase() + diaSemana.substring(1);
       String mesString = DateFormat('MMMM', 'es').format(fecha);
-      mesString = mesString[0].toUpperCase() + mesString.substring(1);
+      mesString = mesString[0].toUpperCase() + diaSemana.substring(1);
       fechasFormateadas.add({
         'diaSemana': diaSemana,
         'diaMes': DateFormat('dd', 'es').format(fecha),
@@ -87,9 +92,9 @@ class MovinfoController extends GetxController {
   List<Map<String, dynamic>> getFuncionesPorFecha(DateTime fecha) {
     List<FuncionesInfoResponse> funcionesFiltradas = pelicula.value.funciones
         .where((funcion) =>
-        DateTime(funcion.fecha.year, funcion.fecha.month,
-            funcion.fecha.day) ==
-            fecha)
+    DateTime(funcion.fecha.year, funcion.fecha.month,
+        funcion.fecha.day) ==
+        fecha)
         .toList();
     funcionesFiltradas.sort((a, b) => a.fecha.compareTo(b.fecha));
 
@@ -102,14 +107,14 @@ class MovinfoController extends GetxController {
     });
 
     List<Map<String, dynamic>> funcionesFormateadas = [];
-    funcionesPorSala.forEach((nombre_sala, funcionesSala) {
+    funcionesPorSala.forEach((nombreSala, funcionesSala) {
       funcionesFormateadas.add({
-        'sala': nombre_sala,
+        'sala': nombreSala,
         'funciones': funcionesSala
             .map((funcion) => {
-                  'funcion': funcion,
-                  'horario': DateFormat('HH:mm').format(funcion.fecha),
-                })
+          'funcion': funcion,
+          'horario': DateFormat('HH:mm').format(funcion.fecha),
+        })
             .toList(),
       });
     });
@@ -118,6 +123,5 @@ class MovinfoController extends GetxController {
   }
 
   Rx<DateTime> selectedDate = DateTime(2024, 4, 23, 15, 30, 0).obs;
-  RxList<FuncionesInfoResponse> funcionesFiltradas =
-      <FuncionesInfoResponse>[].obs;
+  RxList<Map<String, dynamic>> funcionesFiltradas = <Map<String, dynamic>>[].obs;
 }

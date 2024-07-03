@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:intl/intl.dart';
 import '../../configs/constants.dart';
 
 List<PeliculasHomeResponse> peliculasHomeResponseFromJson(String str) =>
@@ -49,20 +49,17 @@ class PeliculasInfoResponse {
   });
 
   factory PeliculasInfoResponse.fromJson(Map<String, dynamic> json) {
-    // Convierte las listas de JSON a List<String>
-    List<String> parseList(List<dynamic> list) {
-      return list.map((item) => item.toString()).toList();
-    }
-
     return PeliculasInfoResponse(
-      id: json["id"],
-      titulo: json["titulo"],
-      sinopsis: json["sinopsis"] ?? '', // si es nulo, devuelve un string vacio
-      imagenUrl: "${BASE_URL}movies/${json["imagen_url"]}",
-      trailerUrl: json["trailer_url"] ?? '', // si es nulo, devuelve un string vacio
-      actores: parseList(json["actores"]),
-      generos: parseList(json["generos"]),
-      funciones: json["funciones"],
+      id: json['id'] as int? ?? 0,
+      titulo: json['titulo'] as String? ?? '',
+      sinopsis: json['sinopsis'] as String? ?? '',
+      imagenUrl: json['imagen_url'] as String? ?? '',
+      trailerUrl: json['trailer_url'] as String? ?? '',
+      actores: List<String>.from(json['actores']?? []),
+      generos: List<String>.from(json['generos']?? []),
+      funciones: (json['funciones'] as List<dynamic>?)
+          ?.map((item) => FuncionesInfoResponse.fromJson(item as Map<String, dynamic>))
+          .toList()?? [],
     );
   }
 
@@ -89,6 +86,16 @@ class PeliculasInfoResponse {
       funciones: [],
     );
   }
+  String generosToString() {
+    String generosString = "";
+    for (int i = 0; i < generos.length; i++) {
+      generosString += generos[i];
+      if (i < generos.length - 1) {
+        generosString += " - ";
+      }
+    }
+    return generosString;
+  }
 }
 
 class FuncionesInfoResponse {
@@ -103,15 +110,10 @@ class FuncionesInfoResponse {
   });
 
   factory FuncionesInfoResponse.fromJson(Map<String, dynamic> json) {
-    // Convierte las listas de JSON a List<String>
-    List<String> parseList(List<dynamic> list) {
-      return list.map((item) => item.toString()).toList();
-    }
-
     return FuncionesInfoResponse(
-      id: json["id"],
-      nombre_sala: json["nombre_sala"],
-      fecha: json["time"]
+      id: json["id"] as int? ?? 0,
+      nombre_sala: json['nombre_sala'] as String? ?? '',
+      fecha: DateFormat('dd/MM/yyyy HH:mm:ss').parse(json['fecha'] as String? ?? '')
     );
   }
 
