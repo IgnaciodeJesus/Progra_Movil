@@ -18,21 +18,26 @@ class Sala {
   });
 
   factory Sala.fromJson(Map<String, dynamic> json) => Sala(
-    id: json["id"],
-    nombre: json["nombre"],
-    direccion: json["direccion"],
-    imagenUrl: json["imagen_url"],
-  );
+        id: json["id"],
+        nombre: json["nombre"],
+        direccion: json["direccion"],
+        imagenUrl: json["imagen_url"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "nombre": nombre,
-    "direccion": direccion,
-    "imagen_url": imagenUrl,
-  };
+        "id": id,
+        "nombre": nombre,
+        "direccion": direccion,
+        "imagen_url": imagenUrl,
+      };
 
   @override
   String toString() {
     return 'Salas{id: $id, nombre: $nombre, direccion: $direccion, imagenUrl: $imagenUrl}';
+  }
+
+  static Sala empty() {
+    return Sala(
+        id: 0, nombre: 'Sala no encontrada', direccion: '', imagenUrl: '');
   }
 }

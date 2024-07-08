@@ -7,18 +7,17 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../configs/constants.dart';
-import '../../models/entities/Entrada.dart';
-import '../../models/entities/Funcion.dart';
 import '../../models/entities/Usuario.dart';
-import '../../models/entities/Pelicula.dart';
-import '../../models/entities/Sala.dart';
+import '../../models/entities/Historial.dart';
 import '../../services/usuario_service.dart';
+import '../../services/historial_service.dart';
 
 class PerfilController extends GetxController {
   Rx<Usuario> usuario = Rx<Usuario>(Usuario.empty());
-  Rx<List<Entrada>> entradas = Rx<List<Entrada>>([]);
+  Rx<List<Historial>> historial = Rx<List<Historial>>([]);
 
   final UsuarioService _usuarioService = UsuarioService();
+  final HistorialService _historialService = HistorialService();
   final ImagePicker _picker = ImagePicker();
 
   void getUser() async {
@@ -26,49 +25,27 @@ class PerfilController extends GetxController {
     String? loggedUser = prefs.getString('logged_user');
     print(loggedUser ?? 'No hay usuario logueado');
     if (loggedUser != null) {
-      var userId = Usuario.fromJson(jsonDecode(loggedUser)).id;
+      var userId =
+          Usuario.fromJson(jsonDecode(utf8.decode(loggedUser.runes.toList())))
+              .id;
 
       // Utiliza el servicio para obtener los datos del usuario
       Usuario? fetchedUser = await _usuarioService.fetchUsuarioById(userId);
       if (fetchedUser != null) {
         print('Fetched user: $fetchedUser');
         usuario.value = fetchedUser;
+        getHistorial(
+            userId); // Obtener el historial después de obtener el usuario
       } else {
         print('Error: Usuario no encontrado');
       }
     }
   }
 
-  void getEntradas() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? loggedUser = prefs.getString('logged_user');
-    usuario.value = Usuario.fromJson(jsonDecode(loggedUser!));
-    entradas.value = List<Entrada>.from(
-        ENTRADAS.where((entrada) => entrada.usuarioId == usuario.value.id));
-  }
-
-  Funcion getFuncion(Entrada entrada) {
-    return FUNCIONES.firstWhere((f) => f.id == entrada.funcionId);
-  }
-
-  Pelicula getPelicula(Entrada entrada) {
-    return PELICULAS.firstWhere((p) => p.id == getFuncion(entrada).peliculaId);
-  }
-
-  Sala getSala(Entrada entrada) {
-    return SALAS.firstWhere((s) => s.id == getFuncion(entrada).salaId);
-  }
-
-  String getPeliculaImagenUrl(Entrada entrada) {
-    return getPelicula(entrada)?.imagenUrl ?? "https://via.placeholder.com/150";
-  }
-
-  String getPeliculaNombre(Entrada entrada) {
-    return getPelicula(entrada)?.titulo ?? "Película no encontrada";
-  }
-
-  String getSalaNombre(Entrada entrada) {
-    return getSala(entrada)?.nombre ?? "Sala no encontrada";
+  void getHistorial(int userId) async {
+    List<Historial> fetchedHistorial =
+        await _historialService.fetchHistorialByUserId(userId);
+    historial.value = fetchedHistorial;
   }
 
   void logOutUser(BuildContext context) async {
@@ -104,7 +81,9 @@ class PerfilController extends GetxController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? loggedUser = prefs.getString('logged_user');
     if (loggedUser != null) {
-      var userId = Usuario.fromJson(jsonDecode(loggedUser)).id;
+      var userId =
+          Usuario.fromJson(jsonDecode(utf8.decode(loggedUser.runes.toList())))
+              .id;
 
       // Llamar al servicio para subir la foto de perfil
       Usuario? updatedUser =
@@ -122,6 +101,5 @@ class PerfilController extends GetxController {
   void onInit() {
     super.onInit();
     getUser();
-    getEntradas();
   }
 }

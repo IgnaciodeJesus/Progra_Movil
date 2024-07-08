@@ -33,32 +33,32 @@ class CinesPage extends StatelessWidget {
                       final sala = control.filteredSalas[index];
                       return GestureDetector(
                           onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CineInfoPage(sala: sala)),
-                        );
-                      },
-                      child: Container(
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Colors.black, width: 0.5),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
-                        child: ListTile(
-                          leading: Image.network(sala.imagenUrl,
-                              width: 100, height: 100, fit: BoxFit.fill),
-                          title: Text(sala.nombre,
-                              style: GoogleFonts.openSans(
-                                  textStyle:
-                                      TextStyle(fontWeight: FontWeight.w900))),
-                          subtitle: Text(sala.direccion,
-                              style: GoogleFonts.openSans()),
-                        ),
-                      )
-                      );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => CineInfoPage(sala: sala)),
+                            // );
+                          },
+                          child: Container(
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border:
+                                  Border.all(color: Colors.black, width: 0.5),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            child: ListTile(
+                              leading: Image.network(sala.imagenUrl,
+                                  width: 100, height: 100, fit: BoxFit.fill),
+                              title: Text(sala.nombre,
+                                  style: GoogleFonts.openSans(
+                                      textStyle: TextStyle(
+                                          fontWeight: FontWeight.w900))),
+                              subtitle: Text(sala.direccion,
+                                  style: GoogleFonts.openSans()),
+                            ),
+                          ));
                     },
                   )),
             ),
@@ -71,9 +71,9 @@ class CinesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: null,
-        body: _buildBody(context),
-      );
+      resizeToAvoidBottomInset: false,
+      appBar: null,
+      body: _buildBody(context),
+    );
   }
 }

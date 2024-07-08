@@ -40,11 +40,12 @@ class PeliculasInfoResponse {
     return PeliculasInfoResponse(
       peliculadata: Pelicula.fromJson(json),
       funciones: (json['funciones'] as List<dynamic>?)
-          ?.map((item) => FuncionesInfoResponse.fromJson(item as Map<String, dynamic>))
-          .toList()?? [],
+              ?.map((item) =>
+                  FuncionesInfoResponse.fromJson(item as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
   }
-
 
   static PeliculasInfoResponse empty() {
     return PeliculasInfoResponse(
@@ -52,6 +53,7 @@ class PeliculasInfoResponse {
       funciones: [],
     );
   }
+
   String generosToString() {
     String generosString = "";
     for (int i = 0; i < peliculadata.generos.length; i++) {
@@ -69,31 +71,23 @@ class FuncionesInfoResponse {
   String nombre_sala;
   DateTime fecha;
 
-  FuncionesInfoResponse({
-    required this.id,
-    required this.nombre_sala,
-    required this.fecha
-  });
+  FuncionesInfoResponse(
+      {required this.id, required this.nombre_sala, required this.fecha});
 
   factory FuncionesInfoResponse.fromJson(Map<String, dynamic> json) {
     return FuncionesInfoResponse(
-      id: json["id"],
-      nombre_sala: json['nombre_sala'] ,
-      fecha: DateTime.parse(json['time'])
-    );
+        id: json["id"],
+        nombre_sala: json['nombre_sala'],
+        fecha: DateTime.parse(json['time']));
   }
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "nombre_sala": nombre_sala,
-    "time": fecha,
-  };
+        "id": id,
+        "nombre_sala": nombre_sala,
+        "time": fecha,
+      };
 
   static FuncionesInfoResponse empty() {
-    return FuncionesInfoResponse(
-      id: 0,
-        nombre_sala: "",
-        fecha: DateTime.now()
-    );
+    return FuncionesInfoResponse(id: 0, nombre_sala: "", fecha: DateTime.now());
   }
 }

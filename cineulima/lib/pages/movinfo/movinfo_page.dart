@@ -14,21 +14,21 @@ class MovinfoPage extends StatelessWidget {
   MovinfoPage({Key? key, required this.pId}) {
     controller.fetchPeliculasInfo(pId);
   }
+
   Widget _buildBody(BuildContext context) {
     var p = controller.pelicula.value;
     var fechasFiltradas = controller.getFechasFiltradas();
     if (fechasFiltradas.length > 0) {
       controller.selectedDate.value = fechasFiltradas[0]['value'];
     }
-    controller.funcionesFiltradas.value = controller.getFuncionesPorFecha(controller.selectedDate.value);
+    controller.funcionesFiltradas.value =
+        controller.getFuncionesPorFecha(controller.selectedDate.value);
     return SingleChildScrollView(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        // Video with movie title overlay
         Stack(
           children: [
-            // Video player
             YoutubePlayer(
               bottomActions: [
                 CurrentPosition(),
@@ -43,11 +43,9 @@ class MovinfoPage extends StatelessWidget {
                 handleColor: Colors.orangeAccent,
               ),
               onReady: () {
-                // Add listener
                 controller.controller.addListener(() {});
               },
             ),
-            // Movie title overlay
             Positioned(
               bottom: 0,
               left: 0,
@@ -72,7 +70,6 @@ class MovinfoPage extends StatelessWidget {
             ),
           ],
         ),
-        // Movie information
         Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -124,7 +121,8 @@ class MovinfoPage extends StatelessWidget {
                           ),
                           SizedBox(width: 8), // Espacio entre los actores
                           Expanded(
-                            child: (index * 2 + 1 < p.peliculadata.actores.length)
+                            child: (index * 2 + 1 <
+                                    p.peliculadata.actores.length)
                                 ? Text(
                                     '• ${p.peliculadata.actores[index * 2 + 1]}',
                                     style: TextStyle(fontSize: 12.5),
@@ -165,8 +163,9 @@ class MovinfoPage extends StatelessWidget {
                         onTap: () {
                           controller.selectedDate.value = fecha['value'];
                           controller.funcionesFiltradas.value =
-                              controller.getFuncionesPorFecha(controller.selectedDate.value);
-                          },
+                              controller.getFuncionesPorFecha(
+                                  controller.selectedDate.value);
+                        },
                         child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Obx(() => Container(
@@ -288,9 +287,9 @@ class MovinfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: buildAppBar('Películas', context, false, true),
-        body: _buildBody(context),
-        );
+      resizeToAvoidBottomInset: false,
+      appBar: buildAppBar('Películas', context, false, true),
+      body: _buildBody(context),
+    );
   }
 }

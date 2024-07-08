@@ -102,9 +102,9 @@ class PerfilPage extends StatelessWidget {
             () => ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemCount: controller.entradas.value.length,
+              itemCount: controller.historial.value.length,
               itemBuilder: (context, index) {
-                final entrada = controller.entradas.value[index];
+                final historial = controller.historial.value[index];
                 return GestureDetector(
                   child: Container(
                     decoration: BoxDecoration(
@@ -114,12 +114,12 @@ class PerfilPage extends StatelessWidget {
                     margin: EdgeInsets.all(8),
                     child: ListTile(
                       leading: Image.network(
-                          controller.getPeliculaImagenUrl(entrada),
+                          "${BASE_URL}movies/${historial.pelicula.imagen}",
                           width: 100,
                           height: 100,
                           fit: BoxFit.cover,
                           alignment: Alignment.topCenter),
-                      title: Text("${controller.getPeliculaNombre(entrada)}",
+                      title: Text("${historial.pelicula.titulo}",
                           style: GoogleFonts.openSans(
                               textStyle: const TextStyle(
                                   fontWeight: FontWeight.w900))),
@@ -127,13 +127,13 @@ class PerfilPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "${controller.getFuncion(entrada).fechahora.toIso8601String().substring(0, 10)} | ${controller.getFuncion(entrada).fechahora.toIso8601String().substring(11, 16)}",
+                            "${historial.fechaFuncion.toIso8601String().substring(0, 10)} | ${historial.fechaFuncion.toIso8601String().substring(11, 16)}",
                             style: GoogleFonts.openSans(
                                 textStyle: TextStyle(
                                     color: Colors.black.withOpacity(0.8))),
                           ),
                           SizedBox(height: 2),
-                          Text("Sala: ${controller.getSalaNombre(entrada)}",
+                          Text("Sala: ${historial.sala.nombre}",
                               style: GoogleFonts.openSans(
                                   textStyle: const TextStyle(
                                       fontWeight: FontWeight.w900))),
@@ -146,7 +146,7 @@ class PerfilPage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => QRCodeScreen(
-                                  entrada: entrada,
+                                  historial: historial,
                                   fromProfilePage: true,
                                 )));
                   },
