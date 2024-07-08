@@ -66,16 +66,15 @@ class PerfilPage extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 60,
                   backgroundColor: Colors.grey[300], // Fondo gris
-                  // Usamos el operador ternario para manejar la imagen de fondo o el ícono
-                  backgroundImage:
-                      controller.usuario.value.fotoPerfil.isNotEmpty
-                          ? FileImage(File(controller.usuario.value.fotoPerfil))
-                              as ImageProvider
-                          : null,
+                  backgroundImage: controller
+                          .usuario.value.fotoPerfil.isNotEmpty
+                      ? NetworkImage(
+                              '${BASE_URL}${controller.usuario.value.fotoPerfil}')
+                          as ImageProvider
+                      : null,
                   child: controller.usuario.value.fotoPerfil.isEmpty
-                      ? Icon(Icons.camera_alt,
-                          size: 30, color: Colors.black) // Ícono de cámara
-                      : null, // No mostrar ícono si hay imagen
+                      ? Icon(Icons.camera_alt, size: 30, color: Colors.black)
+                      : null,
                 ),
               )),
           SizedBox(height: 20),
@@ -154,7 +153,7 @@ class PerfilPage extends StatelessWidget {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );
