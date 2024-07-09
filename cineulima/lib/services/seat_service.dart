@@ -8,7 +8,25 @@ class SeatService {
     try {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
-        return json.decode(response.body);
+        var decodedBody = json.decode(response.body);
+        print(
+            'Response from server: $decodedBody'); // Imprime el resultado de la consulta
+
+        // Imprime los asientos disponibles
+        List disponibles = decodedBody['disponibles'];
+        print('Asientos disponibles:');
+        for (var asiento in disponibles) {
+          print(asiento);
+        }
+
+        // Imprime los asientos no disponibles
+        List noDisponibles = decodedBody['no_disponibles'];
+        print('Asientos no disponibles:');
+        for (var asiento in noDisponibles) {
+          print(asiento);
+        }
+
+        return decodedBody;
       } else {
         throw Exception('Failed to load seats');
       }

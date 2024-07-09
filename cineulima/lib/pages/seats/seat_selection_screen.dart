@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import '../../models/entities/seat.dart';
+import '../../models/entities/Asiento.dart';
 import '../../models/responses/funciones_response.dart';
-import '../../pages/seats/candy_selection_screen.dart'; // Importamos la vista CandySalesScreen
+import '../../pages/seats/candy_selection_screen.dart';
 
 class SeatSelectionScreen extends StatefulWidget {
   final FuncionesResponse funcion;
@@ -29,7 +29,7 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
     controller.fetchSeatsByFunctionId(funcion.funcionId);
   }
 
-  Widget buildSeatGrid(List<Seat> seats, int crossAxisCount) {
+  Widget buildSeatGrid(List<Asiento> seats, int crossAxisCount) {
     double spacing = 10.0;
 
     return GridView.builder(
@@ -43,7 +43,7 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
       ),
       itemCount: seats.length,
       itemBuilder: (context, index) {
-        Seat seat = seats[index];
+        Asiento seat = seats[index];
         return GestureDetector(
           onTap: () {
             if (seat.status != 'occupied') {
@@ -185,20 +185,20 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
                         right: 0,
                         child: Column(
                           children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => CandySalesScreen(
-                                      seatTotal: controller.totalPrice,
-                                      funcion: funcion,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Text('Comprar Confitería'),
-                            ),
+                            // ElevatedButton(
+                            //   onPressed: () {
+                            //     Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //         builder: (context) => CandySalesScreen(
+                            //           seatTotal: controller.totalPrice,
+                            //           funcion: funcion,
+                            //         ),
+                            //       ),
+                            //     );
+                            //   },
+                            //   child: Text('Comprar Confitería'),
+                            // ),
                             GestureDetector(
                               child: BottomAppBar(
                                 height: 50,
