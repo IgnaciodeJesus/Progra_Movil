@@ -1,8 +1,7 @@
 import 'package:cineulima/Widgets/AppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../models/entities/Pelicula.dart';
-import './movinfo_controller.dart';
+import '../movinfo/movinfo_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../seats/seat_selection_screen.dart';

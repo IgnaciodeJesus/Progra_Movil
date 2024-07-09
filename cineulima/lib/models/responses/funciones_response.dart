@@ -14,6 +14,7 @@ class FuncionesResponse {
   String peliculaTitulo;
   String salaNombre;
   String salaDireccion;
+  String salaImagenUrl; // Añadir esta propiedad
 
   FuncionesResponse({
     required this.funcionId,
@@ -23,6 +24,7 @@ class FuncionesResponse {
     required this.peliculaTitulo,
     required this.salaNombre,
     required this.salaDireccion,
+    required this.salaImagenUrl, // Añadir esta propiedad
   });
 
   factory FuncionesResponse.fromJson(Map<String, dynamic> json) =>
@@ -34,6 +36,7 @@ class FuncionesResponse {
         peliculaTitulo: json["pelicula_titulo"],
         salaNombre: json["sala_nombre"],
         salaDireccion: json["sala_direccion"],
+        salaImagenUrl: json["sala_imagen_url"], // Añadir esta propiedad
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,5 +47,6 @@ class FuncionesResponse {
         "pelicula_titulo": peliculaTitulo,
         "sala_nombre": salaNombre,
         "sala_direccion": salaDireccion,
+        "sala_imagen_url": salaImagenUrl, // Añadir esta propiedad
       };
 }

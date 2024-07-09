@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'cines_controller.dart';
-import '../cineinfo/cineinfo_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../configs/constants.dart';
+import '../cineinfo/cineinfo_page.dart';
 
 class CinesPage extends StatelessWidget {
   final CinesController control = Get.put(CinesController());
@@ -12,7 +13,7 @@ class CinesPage extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return Stack(
       children: [
-        Container(color: Color(0XFFD9D9D9)),
+        Container(color: const Color(0XFFD9D9D9)),
         Column(
           children: [
             Container(
@@ -33,10 +34,13 @@ class CinesPage extends StatelessWidget {
                       final sala = control.filteredSalas[index];
                       return GestureDetector(
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(builder: (context) => CineInfoPage(sala: sala)),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    CineInfoPage(salaId: sala.id),
+                              ),
+                            );
                           },
                           child: Container(
                             height: 80,
@@ -49,11 +53,14 @@ class CinesPage extends StatelessWidget {
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 4),
                             child: ListTile(
-                              leading: Image.network(sala.imagenUrl,
-                                  width: 100, height: 100, fit: BoxFit.fill),
+                              leading: Image.network(
+                                  "${BASE_URL}cinemas/${sala.imagenUrl}",
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.fill),
                               title: Text(sala.nombre,
                                   style: GoogleFonts.openSans(
-                                      textStyle: TextStyle(
+                                      textStyle: const TextStyle(
                                           fontWeight: FontWeight.w900))),
                               subtitle: Text(sala.direccion,
                                   style: GoogleFonts.openSans()),
