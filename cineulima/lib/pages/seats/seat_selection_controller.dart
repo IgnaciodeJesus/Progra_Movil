@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../models/entities/seat.dart';
 import '../../services/seat_service.dart';
 import '../../models/responses/funciones_response.dart';
+import '../../pages/seats/candy_selection_screen.dart'; // Asegúrate de importar la pantalla de confitería
 
 class SeatSelectionController extends GetxController {
   RxList<Seat> seats = <Seat>[].obs;
@@ -39,7 +40,15 @@ class SeatSelectionController extends GetxController {
     if (selectedSeatsCount < 1) {
       Get.snackbar('Error', 'Seleccione al menos un asiento');
     } else {
-      // Aquí puedes manejar la lógica de la selección de asientos.
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CandySalesScreen(
+            seatTotal: totalPrice,
+            funcion: funcion,
+          ),
+        ),
+      );
     }
   }
 }

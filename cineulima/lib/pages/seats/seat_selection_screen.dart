@@ -3,10 +3,10 @@ import 'package:cineulima/pages/seats/seat_selection_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../models/entities/seat.dart';
 import 'package:get/get.dart';
+import '../../models/entities/seat.dart';
 import '../../models/responses/funciones_response.dart';
-import '../../services/seat_service.dart';
+import '../../pages/seats/candy_selection_screen.dart'; // Importamos la vista CandySalesScreen
 
 class SeatSelectionScreen extends StatefulWidget {
   final FuncionesResponse funcion;
@@ -183,30 +183,49 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
                         bottom: 0,
                         left: 0,
                         right: 0,
-                        child: GestureDetector(
-                            child: BottomAppBar(
-                              height: 50,
-                              color: Color(0xFF000C78),
-                              child: Container(
-                                color: Colors.transparent,
-                                alignment: Alignment.center,
-                                padding: EdgeInsets.zero,
-                                child: Text('Seleccionar asientos',
-                                    style: GoogleFonts.inter(
-                                        textStyle: const TextStyle(
-                                            color: Colors.white,
-                                            height: 1,
-                                            fontSize: 22.0,
-                                            fontWeight: FontWeight.w800))),
-                              ),
-                            ),
-                            onTap: () {
-                              controller.selectSeats(
-                                  controller.selectedSeats.length,
+                        child: Column(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
                                   context,
-                                  controller.totalPrice,
-                                  widget.funcion);
-                            })),
+                                  MaterialPageRoute(
+                                    builder: (context) => CandySalesScreen(
+                                      seatTotal: controller.totalPrice,
+                                      funcion: funcion,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Text('Comprar Confitería'),
+                            ),
+                            GestureDetector(
+                              child: BottomAppBar(
+                                height: 50,
+                                color: Color(0xFF000C78),
+                                child: Container(
+                                  color: Colors.transparent,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.zero,
+                                  child: Text('Seleccionar asientos',
+                                      style: GoogleFonts.inter(
+                                          textStyle: const TextStyle(
+                                              color: Colors.white,
+                                              height: 1,
+                                              fontSize: 22.0,
+                                              fontWeight: FontWeight.w800))),
+                                ),
+                              ),
+                              onTap: () {
+                                controller.selectSeats(
+                                    controller.selectedSeats.length,
+                                    context,
+                                    controller.totalPrice,
+                                    widget.funcion);
+                              },
+                            ),
+                          ],
+                        )),
                   ],
                 ),
               );
