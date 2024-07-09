@@ -4,6 +4,7 @@ import 'cines_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../configs/constants.dart';
 import '../cineinfo/cineinfo_page.dart';
+import '../../models/entities/Sala.dart';
 
 class CinesPage extends StatelessWidget {
   final CinesController control = Get.put(CinesController());
@@ -37,8 +38,7 @@ class CinesPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    CineInfoPage(salaId: sala.id),
+                                builder: (context) => CineInfoPage(sala: sala),
                               ),
                             );
                           },
@@ -79,7 +79,24 @@ class CinesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: null,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.chevron_left, color: Colors.white, size: 28),
+          onPressed: () => Navigator.pop(context),
+        ),
+        titleSpacing: 5,
+        title: Text(
+          'Cines',
+          style: GoogleFonts.openSans(
+            textStyle: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w900,
+              fontSize: 24,
+            ),
+          ),
+        ),
+        backgroundColor: const Color(0XFFF26F29),
+      ),
       body: _buildBody(context),
     );
   }

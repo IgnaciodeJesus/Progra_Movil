@@ -1,23 +1,273 @@
-import 'package:cineulima/Widgets/AppBar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../models/entities/Sala.dart';
+import '../seats/seat_selection_screen.dart';
+import 'cineinfo_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../configs/constants.dart';
-import 'cineinfo_controller.dart';
-import '../seats/seat_selection_screen.dart';
 
 class CineInfoPage extends StatelessWidget {
   final CineInfoController controller = Get.put(CineInfoController());
+  final Sala sala;
 
-  CineInfoPage({Key? key, required int salaId}) : super(key: key) {
-    controller.fetchFuncionesBySalaId(salaId);
+  CineInfoPage({Key? key, required this.sala}) : super(key: key) {
+    controller.fetchFuncionesBySalaId(sala.id);
+  }
+
+  Widget _buildBody(BuildContext context) {
+    var fechasFiltradas = controller.getFechasFiltradas();
+    if (fechasFiltradas.isNotEmpty) {
+      controller.selectedDate.value = fechasFiltradas[0]['value'];
+    }
+    controller.updateFuncionesFiltradas(controller.selectedDate.value);
+
+    return SingleChildScrollView(
+        child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Stack(
+          children: [
+            Container(
+              height: 200,
+              width: double.infinity,
+              color: Colors.black,
+              child: Opacity(
+                  opacity: 0.8,
+                  child: Image.network(
+                    '${BASE_URL}cinemas/${sala.imagenUrl}',
+                    fit: BoxFit.cover,
+                  )),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                  padding: EdgeInsets.all(8),
+                  child: Column(children: [
+                    Text(sala.nombre,
+                        style: GoogleFonts.inter(
+                            textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 28.0,
+                          fontWeight: FontWeight.w900,
+                        ))),
+                    Text(
+                      sala.direccion,
+                      style: GoogleFonts.itim(
+                          textStyle: const TextStyle(
+                              color: Colors.white, fontSize: 14.0)),
+                    ),
+                  ])),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                fechasFiltradas.isNotEmpty
+                    ? 'Comprar entradas'
+                    : 'No hay funciones disponibles en esta sala',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Color(0xFF000C78),
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: fechasFiltradas.isNotEmpty
+                    ? TextAlign.left
+                    : TextAlign.center,
+              ),
+              SizedBox(width: 4),
+              Container(
+                height: 85,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: fechasFiltradas.length,
+                  itemBuilder: (context, index) {
+                    var fecha = fechasFiltradas[index];
+                    return GestureDetector(
+                        onTap: () {
+                          controller.selectedDate.value = fecha['value'];
+                          controller.updateFuncionesFiltradas(fecha['value']);
+                        },
+                        child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Obx(() => Container(
+                                  width: 50,
+                                  padding: EdgeInsets.only(
+                                      left: 5, right: 5, top: 5),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: controller.selectedDate.value ==
+                                                fecha['value']
+                                            ? Colors.orange
+                                            : Colors.black26),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        fecha['diaSemana'],
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 8,
+                                            color:
+                                                controller.selectedDate.value ==
+                                                        fecha['value']
+                                                    ? Colors.orange
+                                                    : Colors.black45),
+                                      ),
+                                      Text(
+                                        fecha['diaMes'],
+                                        style: TextStyle(
+                                            height: 1.2,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 25,
+                                            color:
+                                                controller.selectedDate.value ==
+                                                        fecha['value']
+                                                    ? Colors.orange
+                                                    : Colors.black45),
+                                      ),
+                                      Text(
+                                        fecha['mes'],
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 8,
+                                            color:
+                                                controller.selectedDate.value ==
+                                                        fecha['value']
+                                                    ? Colors.orange
+                                                    : Colors.black45),
+                                      ),
+                                    ],
+                                  ),
+                                ))));
+                  },
+                ),
+              ),
+              Obx(() => Column(
+                    children:
+                        controller.funcionesFiltradas.value.map((funcion) {
+                      final pelicula = controller.funciones.firstWhere(
+                          (element) =>
+                              element.peliculaId == funcion['peliculaId']);
+                      return Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 2.5),
+                        child: Column(
+                          children: [
+                            Divider(),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10, right: 20),
+                                  child: Image.network(
+                                    '${BASE_URL}movies/${pelicula.peliculaImagenUrl}', // Actualizamos para mostrar la imagen de la película
+                                    width: 110,
+                                  ),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${pelicula.peliculaTitulo}',
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Container(
+                                        height: 130,
+                                        child: Wrap(
+                                          direction: Axis.vertical,
+                                          children: List.generate(
+                                            funcion['funciones'].length,
+                                            (index) {
+                                              return buildHorario(
+                                                  funcion['funciones'][index],
+                                                  context);
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                  ))
+            ],
+          ),
+        ),
+      ],
+    ));
+  }
+
+  GestureDetector buildHorario(
+      Map<String, dynamic> funcion, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  SeatSelectionScreen(funcion: funcion["funcion"])),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: const Color(0xFF000C78)),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        margin: const EdgeInsets.only(top: 5, bottom: 5, right: 10),
+        child: Text(
+          '${funcion['horario']}',
+          style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF000C78)),
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: buildAppBar('Cines', context, false, true),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.chevron_left, color: Colors.white, size: 28),
+          onPressed: () => Navigator.pop(context),
+        ),
+        titleSpacing: 5,
+        title: Text(
+          'Cines',
+          style: GoogleFonts.openSans(
+            textStyle: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w900,
+              fontSize: 24,
+            ),
+          ),
+        ),
+        backgroundColor: const Color(0XFFF26F29),
+      ),
       body: Obx(() {
         if (controller.isLoading.value) {
           return Center(child: CircularProgressIndicator());
@@ -25,169 +275,8 @@ class CineInfoPage extends StatelessWidget {
         if (controller.funciones.isEmpty) {
           return Center(child: Text("No hay funciones disponibles"));
         }
-        return SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildCinemaImage(context),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Comprar entradas',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF0000FF),
-                  ),
-                ),
-              ),
-              _buildDateSelector(),
-              _buildFuncionesList(context),
-            ],
-          ),
-        );
+        return _buildBody(context);
       }),
     );
-  }
-
-  Widget _buildCinemaImage(BuildContext context) {
-    final sala = controller.funciones.first.salaNombre;
-    final direccion = controller.funciones.first.salaDireccion;
-    final imagenUrl = controller.funciones.first.salaImagenUrl;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Image.network('${BASE_URL}cinemas/$imagenUrl',
-            width: MediaQuery.of(context).size.width,
-            height: 200,
-            fit: BoxFit.cover),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            sala,
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Text(
-            direccion,
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDateSelector() {
-    final fechas = controller.getFechasFiltradas();
-    return Container(
-      height: 60,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: fechas.length,
-        itemBuilder: (context, index) {
-          final fecha = fechas[index];
-          return GestureDetector(
-            onTap: () {
-              controller.selectedDate.value = fecha['value'];
-              controller.updateFuncionesFiltradas(fecha['value']);
-            },
-            child: Container(
-              width: 80,
-              margin: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: controller.selectedDate.value == fecha['value']
-                    ? Colors.orange
-                    : Colors.grey[200],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    fecha['diaSemana'],
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: controller.selectedDate.value == fecha['value']
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                  ),
-                  Text(
-                    fecha['diaMes'],
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: controller.selectedDate.value == fecha['value']
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                  ),
-                  Text(
-                    fecha['mes'],
-                    style: TextStyle(
-                      color: controller.selectedDate.value == fecha['value']
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildFuncionesList(BuildContext context) {
-    return Obx(() {
-      return Column(
-        children: controller.funcionesFiltradas.map((funcionData) {
-          final pelicula = controller.funciones.firstWhere(
-              (element) => element.peliculaId == funcionData['peliculaId']);
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  pelicula.peliculaTitulo,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              ...funcionData['funciones'].map<Widget>((funcion) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Card(
-                    child: ListTile(
-                      title: Text(funcion['horario']),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SeatSelectionScreen(
-                                  funcion: funcion["funcion"])),
-                        );
-                      },
-                    ),
-                  ),
-                );
-              }).toList(),
-            ],
-          );
-        }).toList(),
-      );
-    });
   }
 }

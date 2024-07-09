@@ -12,9 +12,10 @@ class FuncionesResponse {
   int salaId;
   DateTime fechaHora;
   String peliculaTitulo;
+  String peliculaImagenUrl; // Añadimos este campo
   String salaNombre;
   String salaDireccion;
-  String salaImagenUrl; // Añadir esta propiedad
+  String salaImagenUrl; // Añadimos este campo
 
   FuncionesResponse({
     required this.funcionId,
@@ -22,9 +23,10 @@ class FuncionesResponse {
     required this.salaId,
     required this.fechaHora,
     required this.peliculaTitulo,
+    required this.peliculaImagenUrl, // Inicializamos este campo
     required this.salaNombre,
     required this.salaDireccion,
-    required this.salaImagenUrl, // Añadir esta propiedad
+    required this.salaImagenUrl, // Inicializamos este campo
   });
 
   factory FuncionesResponse.fromJson(Map<String, dynamic> json) =>
@@ -34,9 +36,10 @@ class FuncionesResponse {
         salaId: json["sala_id"],
         fechaHora: DateTime.parse(json["fecha_hora"]),
         peliculaTitulo: json["pelicula_titulo"],
+        peliculaImagenUrl: json["pelicula_imagen_url"], // Mapeamos este campo
         salaNombre: json["sala_nombre"],
         salaDireccion: json["sala_direccion"],
-        salaImagenUrl: json["sala_imagen_url"], // Añadir esta propiedad
+        salaImagenUrl: json["sala_imagen_url"], // Mapeamos este campo
       );
 
   Map<String, dynamic> toJson() => {
@@ -45,8 +48,9 @@ class FuncionesResponse {
         "sala_id": salaId,
         "fecha_hora": fechaHora.toIso8601String(),
         "pelicula_titulo": peliculaTitulo,
+        "pelicula_imagen_url": peliculaImagenUrl, // Añadimos este campo
         "sala_nombre": salaNombre,
         "sala_direccion": salaDireccion,
-        "sala_imagen_url": salaImagenUrl, // Añadir esta propiedad
+        "sala_imagen_url": salaImagenUrl, // Añadimos este campo
       };
 }
