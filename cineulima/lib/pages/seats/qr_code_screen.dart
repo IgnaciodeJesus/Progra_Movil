@@ -255,7 +255,9 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
               onTap: () {
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (_) => HomePage()),
+                    MaterialPageRoute(
+                        builder: (_) => QRCodeScreen(
+                            historial: historial, fromProfilePage: false)),
                     (route) => false);
               })
           : null,

@@ -168,7 +168,7 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
                                     color: Colors.black87,
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.w500))),
-                        Text('Precio Total: \S/.${controller.totalPrice}',
+                        Text('Precio Total: S/.${controller.totalPrice}',
                             style: GoogleFonts.itim(
                                 textStyle: const TextStyle(
                                     color: Colors.black87,
@@ -185,20 +185,6 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
                         right: 0,
                         child: Column(
                           children: [
-                            // ElevatedButton(
-                            //   onPressed: () {
-                            //     Navigator.push(
-                            //       context,
-                            //       MaterialPageRoute(
-                            //         builder: (context) => CandySalesScreen(
-                            //           seatTotal: controller.totalPrice,
-                            //           funcion: funcion,
-                            //         ),
-                            //       ),
-                            //     );
-                            //   },
-                            //   child: Text('Comprar Confitería'),
-                            // ),
                             GestureDetector(
                               child: BottomAppBar(
                                 height: 50,

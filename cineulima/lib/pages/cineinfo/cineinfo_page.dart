@@ -153,63 +153,67 @@ class CineInfoPage extends StatelessWidget {
                   },
                 ),
               ),
-              Obx(() => Column(
-                    children:
-                        controller.funcionesFiltradas.value.map((funcion) {
-                      final pelicula = controller.funciones.firstWhere(
-                          (element) =>
-                              element.peliculaId == funcion['peliculaId']);
-                      return Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 12, vertical: 2.5),
-                        child: Column(
-                          children: [
-                            Divider(),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10, right: 20),
-                                  child: Image.network(
-                                    '${BASE_URL}movies/${pelicula.peliculaImagenUrl}', // Actualizamos para mostrar la imagen de la película
-                                    width: 110,
-                                  ),
+              Obx(() {
+                // Print the filtered functions
+                print(
+                    "Funciones Filtradas: ${controller.funcionesFiltradas.value}");
+                return Column(
+                  children: controller.funcionesFiltradas.value.map((funcion) {
+                    final pelicula = controller.funciones.firstWhere(
+                        (element) =>
+                            element.peliculaId == funcion['peliculaId']);
+                    return Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 2.5),
+                      child: Column(
+                        children: [
+                          Divider(),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 10, right: 20),
+                                child: Image.network(
+                                  '${BASE_URL}movies/${pelicula.peliculaImagenUrl}', // Actualizamos para mostrar la imagen de la película
+                                  width: 110,
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${pelicula.peliculaTitulo}',
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${pelicula.peliculaTitulo}',
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Container(
-                                        height: 130,
-                                        child: Wrap(
-                                          direction: Axis.vertical,
-                                          children: List.generate(
-                                            funcion['funciones'].length,
-                                            (index) {
-                                              return buildHorario(
-                                                  funcion['funciones'][index],
-                                                  context);
-                                            },
-                                          ),
+                                  ),
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Container(
+                                      height: 130,
+                                      child: Wrap(
+                                        direction: Axis.vertical,
+                                        children: List.generate(
+                                          funcion['funciones'].length,
+                                          (index) {
+                                            return buildHorario(
+                                                funcion['funciones'][index],
+                                                context);
+                                          },
                                         ),
                                       ),
                                     ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    }).toList(),
-                  ))
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  }).toList(),
+                );
+              })
             ],
           ),
         ),

@@ -7,6 +7,7 @@ import '../../services/product_service.dart';
 import '../../models/responses/funciones_response.dart';
 import 'candy_selection_controller.dart';
 import '../../configs/constants.dart';
+import '../seats/payment_confirmation_screen.dart'; // Importamos la pantalla de pago
 
 class CandySalesScreen extends StatefulWidget {
   final double seatTotal;
@@ -130,7 +131,7 @@ class _CandySalesScreenState extends State<CandySalesScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Obx(() {
                     return Text(
-                      "Total Confitería: \$.${controller.candyPrice.value.toStringAsFixed(2)}",
+                      "Total Confitería: S/.${controller.candyPrice.value.toStringAsFixed(2)}",
                       style: GoogleFonts.inter(
                           textStyle: const TextStyle(
                         color: Colors.black,
@@ -143,7 +144,7 @@ class _CandySalesScreenState extends State<CandySalesScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
-                      "Total Asientos: \$.${widget.seatTotal.toStringAsFixed(2)}",
+                      "Total Asientos: S/.${widget.seatTotal.toStringAsFixed(2)}",
                       style: GoogleFonts.inter(
                           textStyle: const TextStyle(
                         color: Colors.black,
@@ -155,7 +156,7 @@ class _CandySalesScreenState extends State<CandySalesScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Obx(() {
                     return Text(
-                      "Total: \$.${(widget.seatTotal + controller.candyPrice.value).toStringAsFixed(2)}",
+                      "Total: S/.${(widget.seatTotal + controller.candyPrice.value).toStringAsFixed(2)}",
                       style: GoogleFonts.inter(
                           textStyle: const TextStyle(
                         color: Colors.black,
@@ -191,6 +192,13 @@ class _CandySalesScreenState extends State<CandySalesScreen> {
               ),
               onTap: () {
                 // Navegar a la pantalla de pago
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        PaymentScreen(funcion: widget.funcion),
+                  ),
+                );
               },
             ),
           ),

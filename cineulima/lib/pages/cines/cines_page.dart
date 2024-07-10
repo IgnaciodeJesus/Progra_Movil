@@ -78,25 +78,6 @@ class CinesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.chevron_left, color: Colors.white, size: 28),
-          onPressed: () => Navigator.pop(context),
-        ),
-        titleSpacing: 5,
-        title: Text(
-          'Cines',
-          style: GoogleFonts.openSans(
-            textStyle: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w900,
-              fontSize: 24,
-            ),
-          ),
-        ),
-        backgroundColor: const Color(0XFFF26F29),
-      ),
       body: _buildBody(context),
     );
   }
