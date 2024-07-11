@@ -2,7 +2,7 @@ import 'package:cineulima/Widgets/AppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import '../../models/entities/producto.dart';
+import '../../models/entities/Producto.dart';
 import '../../services/product_service.dart';
 import '../../models/responses/funciones_response.dart';
 import 'candy_selection_controller.dart';

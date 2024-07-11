@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../models/entities/producto.dart';
+import '../../models/entities/Producto.dart';
 import '../../services/product_service.dart';
 
 class CandySelectionController extends GetxController {

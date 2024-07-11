@@ -32,6 +32,7 @@ class MovinfoController extends GetxController {
   YoutubePlayerController get controller => _controller;
 
   Future<void> fetchPeliculasInfo(int id) async {
+    pelicula.value = PeliculasInfoResponse.empty();
     PeliculasInfoResponse? peliResponse =
         await peliculasService.fetchPeliculasPage(id);
     if (peliResponse.peliculadata.id != 0) {
@@ -49,6 +50,7 @@ class MovinfoController extends GetxController {
           textColor: Colors.white,
           fontSize: 16.0);
     }
+
   }
 
   Future<void> fetchFunciones(int movieId) async {

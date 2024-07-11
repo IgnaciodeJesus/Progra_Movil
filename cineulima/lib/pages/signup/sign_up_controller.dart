@@ -79,7 +79,7 @@ class SignUpController extends GetxController {
     try {
       final response = await http.post(
         Uri.parse(
-            'http://192.168.0.138:4567/user/create'), // Usa tu IP y puerto correctos
+            '${BASE_URL}user/create'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

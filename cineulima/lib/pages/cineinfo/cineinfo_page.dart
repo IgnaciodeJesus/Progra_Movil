@@ -12,7 +12,6 @@ class CineInfoPage extends StatelessWidget {
   final Sala sala;
 
   CineInfoPage({Key? key, required this.sala}) : super(key: key) {
-    controller.fetchFuncionesBySalaId(sala.id);
   }
 
   Widget _buildBody(BuildContext context) {
@@ -272,7 +271,17 @@ class CineInfoPage extends StatelessWidget {
         ),
         backgroundColor: const Color(0XFFF26F29),
       ),
-      body: Obx(() {
+      body: FutureBuilder(
+        future: controller.fetchFuncionesBySalaId(sala.id),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          return _buildBody(context);
+        },
+      ),
+      /*Obx(() {
         if (controller.isLoading.value) {
           return Center(child: CircularProgressIndicator());
         }
@@ -280,7 +289,7 @@ class CineInfoPage extends StatelessWidget {
           return Center(child: Text("No hay funciones disponibles"));
         }
         return _buildBody(context);
-      }),
+      }),*/
     );
   }
 }

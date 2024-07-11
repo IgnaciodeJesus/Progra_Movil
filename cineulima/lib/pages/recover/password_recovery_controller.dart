@@ -44,7 +44,7 @@ class PasswordRecoveryController extends GetxController {
     try {
       final response = await http.post(
         Uri.parse(
-            'http://192.168.0.138:4567/user/reset'), // Usa tu IP y puerto correctos
+            '${BASE_URL}/user/reset'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
