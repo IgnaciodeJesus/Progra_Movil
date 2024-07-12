@@ -15,6 +15,8 @@ class SeatSelectionController extends GetxController {
       seats.where((seat) => seat.status != 'occupied').length;
 
   Future<void> fetchSeatsByFunctionId(int functionId) async {
+    seats.value = [];
+    selectedSeats.value = [];
     var seatsData = await seatService.fetchSeatsByFunctionId(functionId);
     List<Map<String, dynamic>> occupiedSeats =
         List<Map<String, dynamic>>.from(seatsData['no_disponibles']);
