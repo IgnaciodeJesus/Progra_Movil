@@ -5,32 +5,28 @@ import '../../services/sala_service.dart';
 class CinesController extends GetxController {
   var salas = <Sala>[].obs;
   var filteredSalas = <Sala>[].obs;
-  final SalaService salaService = SalaService();
 
-  @override
-  void onInit() {
-    super.onInit();
-    fetchSalas();
-  }
-
-  void fetchSalas() async {
+  Future<List<Sala>> fetchSalas() async {
     try {
-      var fetchedSalas = await salaService.fetchSalas();
-      salas.assignAll(fetchedSalas);
-      filteredSalas.assignAll(fetchedSalas);
+      List<Sala> fetchedSalas = await SalaService().fetchSalas();
+      return fetchedSalas;
     } catch (e) {
-      print('Error fetching salas: $e');
+      print("Error fetching salas: $e");
+      return [];
     }
   }
 
-  void filtrarSala(String filtro) {
-    if (filtro.isEmpty) {
+  void setSalas(List<Sala> salasList) {
+    salas.assignAll(salasList);
+    filteredSalas.assignAll(salasList);
+  }
+
+  void filtrarSala(String query) {
+    if (query.isEmpty) {
       filteredSalas.assignAll(salas);
     } else {
-      filteredSalas.value = salas
-          .where((sala) =>
-              sala.nombre.toLowerCase().contains(filtro.toLowerCase()))
-          .toList();
+      filteredSalas.assignAll(salas.where(
+          (sala) => sala.nombre.toLowerCase().contains(query.toLowerCase())));
     }
   }
 }

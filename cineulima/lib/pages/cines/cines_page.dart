@@ -29,45 +29,61 @@ class CinesPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Obx(() => ListView.builder(
-                    itemCount: control.filteredSalas.length,
-                    itemBuilder: (context, index) {
-                      final sala = control.filteredSalas[index];
-                      return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CineInfoPage(sala: sala),
-                              ),
-                            );
+              child: FutureBuilder<List<Sala>>(
+                future: control.fetchSalas(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error al cargar las salas'));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return Center(child: Text('No hay salas disponibles'));
+                  } else {
+                    final salas = snapshot.data!;
+                    control.setSalas(salas); // Set the salas to the controller
+                    return Obx(() => ListView.builder(
+                          itemCount: control.filteredSalas.length,
+                          itemBuilder: (context, index) {
+                            final sala = control.filteredSalas[index];
+                            return GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          CineInfoPage(sala: sala),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    border: Border.all(
+                                        color: Colors.black, width: 0.5),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 4),
+                                  child: ListTile(
+                                    leading: Image.network(
+                                        "${BASE_URL}cinemas/${sala.imagenUrl}",
+                                        width: 100,
+                                        height: 100,
+                                        fit: BoxFit.fill),
+                                    title: Text(sala.nombre,
+                                        style: GoogleFonts.openSans(
+                                            textStyle: const TextStyle(
+                                                fontWeight: FontWeight.w900))),
+                                    subtitle: Text(sala.direccion,
+                                        style: GoogleFonts.openSans()),
+                                  ),
+                                ));
                           },
-                          child: Container(
-                            height: 80,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border:
-                                  Border.all(color: Colors.black, width: 0.5),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 4),
-                            child: ListTile(
-                              leading: Image.network(
-                                  "${BASE_URL}cinemas/${sala.imagenUrl}",
-                                  width: 100,
-                                  height: 100,
-                                  fit: BoxFit.fill),
-                              title: Text(sala.nombre,
-                                  style: GoogleFonts.openSans(
-                                      textStyle: const TextStyle(
-                                          fontWeight: FontWeight.w900))),
-                              subtitle: Text(sala.direccion,
-                                  style: GoogleFonts.openSans()),
-                            ),
-                          ));
-                    },
-                  )),
+                        ));
+                  }
+                },
+              ),
             ),
           ],
         ),

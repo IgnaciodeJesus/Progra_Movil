@@ -20,7 +20,7 @@ class PerfilController extends GetxController {
   final HistorialService _historialService = HistorialService();
   final ImagePicker _picker = ImagePicker();
 
-  void getUser() async {
+  Future<void> getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? loggedUser = prefs.getString('logged_user');
     print(loggedUser ?? 'No hay usuario logueado');
@@ -34,7 +34,7 @@ class PerfilController extends GetxController {
       if (fetchedUser != null) {
         print('Fetched user: $fetchedUser');
         usuario.value = fetchedUser;
-        getHistorial(
+        await getHistorial(
             userId); // Obtener el historial después de obtener el usuario
       } else {
         print('Error: Usuario no encontrado');
@@ -42,7 +42,7 @@ class PerfilController extends GetxController {
     }
   }
 
-  void getHistorial(int userId) async {
+  Future<void> getHistorial(int userId) async {
     List<Historial> fetchedHistorial =
         await _historialService.fetchHistorialByUserId(userId);
     historial.value = fetchedHistorial;
@@ -95,11 +95,5 @@ class PerfilController extends GetxController {
         prefs.setString('logged_user', jsonEncode(updatedUser.toJson()));
       }
     }
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    getUser();
   }
 }

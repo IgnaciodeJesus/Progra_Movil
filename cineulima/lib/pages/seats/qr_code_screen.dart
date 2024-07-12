@@ -167,65 +167,100 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                 },
                 children: [
                   TableRow(
+                    decoration: BoxDecoration(
+                      color: Color(0XFFF26F29),
+                    ),
                     children: [
                       TableCell(
                           child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Text('Nombre'))),
+                              child: Text('Nombre',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)))),
                       TableCell(
                           child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Text('Cantidad'))),
+                              child: Text('Cant.',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)))),
                       TableCell(
                           child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Text('Precio'))),
+                              child: Text('Precio',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)))),
                       TableCell(
                           child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Text('Total'))),
+                              child: Text('Total',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)))),
                     ],
                   ),
                   ...historial.productos.map((producto) => TableRow(
+                        decoration: BoxDecoration(
+                          color: const Color(0XFFD9D9D9),
+                        ),
                         children: [
                           TableCell(
                               child: Padding(
                                   padding: EdgeInsets.all(8.0),
-                                  child: Text(producto.nombre))),
+                                  child: Text(producto.nombre,
+                                      style: GoogleFonts.itim()))),
                           TableCell(
                               child: Padding(
                                   padding: EdgeInsets.all(8.0),
-                                  child: Text(producto.cantidad.toString()))),
+                                  child: Text(producto.cantidad.toString(),
+                                      style: GoogleFonts.itim()))),
                           TableCell(
                               child: Padding(
                                   padding: EdgeInsets.all(8.0),
-                                  child: Text(producto.precio.toString()))),
+                                  child: Text(producto.precio.toString(),
+                                      style: GoogleFonts.itim()))),
                           TableCell(
                               child: Padding(
                                   padding: EdgeInsets.all(8.0),
-                                  child: Text(producto.total.toString()))),
+                                  child: Text(producto.total.toString(),
+                                      style: GoogleFonts.itim()))),
                         ],
                       )),
                   TableRow(
+                    decoration: BoxDecoration(
+                      color: Color(0xFF000C78),
+                    ),
                     children: [
                       TableCell(
                           child: Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text('Total',
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)))),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)))),
                       TableCell(
                           child: Padding(
-                              padding: EdgeInsets.all(8.0), child: Text(''))),
+                              padding: EdgeInsets.all(8.0),
+                              child: Text('',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)))),
                       TableCell(
                           child: Padding(
-                              padding: EdgeInsets.all(8.0), child: Text(''))),
+                              padding: EdgeInsets.all(8.0),
+                              child: Text('',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)))),
                       TableCell(
                           child: Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(historial.gastoTotal.toString(),
-                                  style:
-                                      TextStyle(fontWeight: FontWeight.bold)))),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)))),
                     ],
                   ),
                 ],
@@ -255,9 +290,7 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
               onTap: () {
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(
-                        builder: (_) => QRCodeScreen(
-                            historial: historial, fromProfilePage: false)),
+                    MaterialPageRoute(builder: (_) => HomePage()),
                     (route) => false);
               })
           : null,

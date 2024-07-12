@@ -26,7 +26,6 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
   @override
   void initState() {
     super.initState();
-    controller.fetchSeatsByFunctionId(funcion.funcionId);
   }
 
   Widget buildSeatGrid(List<Asiento> seats, int crossAxisCount) {
@@ -107,115 +106,129 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar('Asientos', context, false, true),
-      body: Obx(() {
-        return controller.seats.isEmpty
-            ? Center(child: CircularProgressIndicator())
-            : Container(
-                child: Stack(
-                  children: [
-                    Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20),
-                          child: Column(
+      body: FutureBuilder(
+        future: controller.fetchSeatsByFunctionId(funcion.funcionId),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text("Error al cargar los asientos"));
+          } else {
+            return Obx(() {
+              return controller.seats.isEmpty
+                  ? Center(child: CircularProgressIndicator())
+                  : Container(
+                      child: Stack(
+                        children: [
+                          Column(
                             children: [
-                              Text(funcion.peliculaTitulo,
-                                  style: GoogleFonts.inter(
-                                      textStyle: const TextStyle(
-                                          fontSize: 28.0,
-                                          fontWeight: FontWeight.w900))),
-                              Text(funcion.salaNombre,
-                                  style: GoogleFonts.inter(
-                                      textStyle: const TextStyle(
-                                          color: Colors.black87,
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.w700))),
-                              Text(funcion.fechaHora.toString(),
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 20),
+                                child: Column(
+                                  children: [
+                                    Text(funcion.peliculaTitulo,
+                                        style: GoogleFonts.inter(
+                                            textStyle: const TextStyle(
+                                                fontSize: 28.0,
+                                                fontWeight: FontWeight.w900))),
+                                    Text(funcion.salaNombre,
+                                        style: GoogleFonts.inter(
+                                            textStyle: const TextStyle(
+                                                color: Colors.black87,
+                                                fontSize: 16.0,
+                                                fontWeight: FontWeight.w700))),
+                                    Text(funcion.fechaHora.toString(),
+                                        style: GoogleFonts.itim(
+                                            textStyle: const TextStyle(
+                                                color: Colors.black87,
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500))),
+                                  ],
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(width: 20),
+                                  Expanded(
+                                      child:
+                                          buildSeatGrid(controller.seats, 10)),
+                                  SizedBox(width: 20),
+                                ],
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 15.0),
+                                child: Image.asset(
+                                    'assets/images/cinema_screen_reversed.png',
+                                    height: 125,
+                                    width: 1000),
+                              ),
+                              Text(
+                                  'Asientos Seleccionados: ${controller.selectedSeats.length}',
                                   style: GoogleFonts.itim(
                                       textStyle: const TextStyle(
                                           color: Colors.black87,
-                                          fontSize: 12.0,
+                                          fontSize: 15.0,
                                           fontWeight: FontWeight.w500))),
+                              Text(
+                                  'Asientos Disponibles: ${controller.availableSeatsCount - controller.selectedSeats.length}',
+                                  style: GoogleFonts.itim(
+                                      textStyle: const TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w500))),
+                              Text('Precio Total: S/.${controller.totalPrice}',
+                                  style: GoogleFonts.itim(
+                                      textStyle: const TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w500))),
+                              SizedBox(height: 20),
+                              buildSeatLegend(),
+                              SizedBox(height: 20),
                             ],
                           ),
-                        ),
-                        Row(
-                          children: [
-                            SizedBox(width: 20),
-                            Expanded(
-                                child: buildSeatGrid(controller.seats, 10)),
-                            SizedBox(width: 20),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 15.0),
-                          child: Image.asset(
-                              'assets/images/cinema_screen_reversed.png',
-                              height: 125,
-                              width: 1000),
-                        ),
-                        Text(
-                            'Asientos Seleccionados: ${controller.selectedSeats.length}',
-                            style: GoogleFonts.itim(
-                                textStyle: const TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 15.0,
-                                    fontWeight: FontWeight.w500))),
-                        Text(
-                            'Asientos Disponibles: ${controller.seats.length - controller.selectedSeats.length}',
-                            style: GoogleFonts.itim(
-                                textStyle: const TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 15.0,
-                                    fontWeight: FontWeight.w500))),
-                        Text('Precio Total: S/.${controller.totalPrice}',
-                            style: GoogleFonts.itim(
-                                textStyle: const TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 15.0,
-                                    fontWeight: FontWeight.w500))),
-                        SizedBox(height: 20),
-                        buildSeatLegend(),
-                        SizedBox(height: 20),
-                      ],
-                    ),
-                    Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Column(
-                          children: [
-                            GestureDetector(
-                              child: BottomAppBar(
-                                height: 50,
-                                color: Color(0xFF000C78),
-                                child: Container(
-                                  color: Colors.transparent,
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.zero,
-                                  child: Text('Seleccionar asientos',
-                                      style: GoogleFonts.inter(
-                                          textStyle: const TextStyle(
-                                              color: Colors.white,
-                                              height: 1,
-                                              fontSize: 22.0,
-                                              fontWeight: FontWeight.w800))),
-                                ),
-                              ),
-                              onTap: () {
-                                controller.selectSeats(
-                                    controller.selectedSeats.length,
-                                    context,
-                                    controller.totalPrice,
-                                    widget.funcion);
-                              },
-                            ),
-                          ],
-                        )),
-                  ],
-                ),
-              );
-      }),
+                          Positioned(
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    child: BottomAppBar(
+                                      height: 50,
+                                      color: Color(0xFF000C78),
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        alignment: Alignment.center,
+                                        padding: EdgeInsets.zero,
+                                        child: Text('Seleccionar asientos',
+                                            style: GoogleFonts.inter(
+                                                textStyle: const TextStyle(
+                                                    color: Colors.white,
+                                                    height: 1,
+                                                    fontSize: 22.0,
+                                                    fontWeight:
+                                                        FontWeight.w800))),
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      controller.selectSeats(
+                                          controller.selectedSeats.length,
+                                          context,
+                                          controller.totalPrice,
+                                          widget.funcion);
+                                    },
+                                  ),
+                                ],
+                              )),
+                        ],
+                      ),
+                    );
+            });
+          }
+        },
+      ),
     );
   }
 

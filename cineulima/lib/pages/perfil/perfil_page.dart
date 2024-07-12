@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:io'; // Para usar FileImage
 import '../../configs/constants.dart';
-import 'package:cineulima/pages/login/loginPage.dart';
 
 class PerfilPage extends StatelessWidget {
   PerfilPage({Key? key}) : super(key: key);
@@ -15,10 +14,21 @@ class PerfilPage extends StatelessWidget {
     // Crea una instancia del controlador
     final PerfilController controller =
         Get.put(PerfilController(), permanent: true);
-    controller.onInit();
+
     return Scaffold(
       appBar: _buildAppBar(context, controller),
-      body: _buildBody(controller),
+      body: FutureBuilder(
+        future: controller.getUser(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text("Error al cargar los datos"));
+          } else {
+            return _buildBody(controller);
+          }
+        },
+      ),
     );
   }
 
